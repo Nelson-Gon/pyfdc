@@ -15,3 +15,18 @@ python3 pyfdc/setup.py install
 
 ```
 ---
+
+# Sample usage
+
+```
+import pyfdc
+
+```
+
+# Query the database
+
+```
+res = get_food_search_endpoint(api_key= "my_api_key_here","search_query= "Cheddar Cheese")
+
+```
+
