@@ -9,7 +9,7 @@
 
 ```
 # clone the repo
-git zoclone https://www.github.com/Nelson-Gon/pyfdc
+git clone https://www.github.com/Nelson-Gon/pyfdc
 cd pyfdc
 python3 pyfdc/setup.py install
 
