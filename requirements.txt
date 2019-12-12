@@ -1,3 +1,1 @@
-requests
-pytest
-vcrpy
+requests==2.21.0
