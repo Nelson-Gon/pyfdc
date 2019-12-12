@@ -1,4 +1,4 @@
-# pyfdc: A python interface to FoodDataCentral
+# python-fdc: A python interface to FoodDataCentral
 
 
 **This is a work in progress. Things might break and change unannounced. It is still highly experimental.**
@@ -9,9 +9,9 @@
 
 ```
 # clone the repo
-git clone https://www.github.com/Nelson-Gon/pyfdc
-cd pyfdc
-python3 pyfdc/setup.py install
+git clone https://www.github.com/Nelson-Gon/python-fdc
+cd python-fdc
+python3 python-fdc/setup.py install
 
 ```
 ---
@@ -19,7 +19,7 @@ python3 pyfdc/setup.py install
 # Sample usage
 
 ```
-import pyfdc
+import python-fdc
 
 ```
 
