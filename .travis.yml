@@ -15,5 +15,5 @@ before_install:
     - git clone https://www.github.com/Nelson-Gon/pyfdc.git
 
 script:
-    - cd pyfdc
-    - python3 pyfdc/setup.py install
+    - cd python-fdc
+    - python3 python-fdc/setup.py install
