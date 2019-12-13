@@ -12,7 +12,6 @@ python:
 before_install:
     - pip install -U pip
     - pip install -r requirements.txt
-    - git clone https://www.github.com/Nelson-Gon/python-fdc.git
 
 script:
-    - cd python-fdc && python python-fdc/setup.py install
+    - python python-fdc/setup.py install || python3 python-fdc/setup.py install
