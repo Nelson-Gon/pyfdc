@@ -7,5 +7,5 @@ setup(name='pyfdc',
         author_email='gonzabato@hotmail.com',
         license='MIT',
         packages=['python-fdc'],
-        install_requires=['requests']
+        install_requires=['requests'],
         zip_safe=False)
