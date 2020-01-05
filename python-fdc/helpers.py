@@ -49,8 +49,10 @@ def get_food_search_endpoint(search_query=None, api_key=None, ingredients=None, 
                     'brandOwner': brand_owner}
     # Currently not supporting data types
     # Will add it later
-
-    search_query = {key: "desc" for key, value in search_query.items() if key == "sortDirection" and not ascending}
+    # This was a bug for some reason
+    # Should figure out sometime later
+    #search_query = {key: "desc" for key, value in search_query.items() if key == "sortDirection" and not ascending}
+    #print(search_query)
 
     request_parameters = {'api_key': api_key}
     url_response = requests.post(r"https://api.nal.usda.gov/fdc/v1/search",
@@ -59,7 +61,7 @@ def get_food_search_endpoint(search_query=None, api_key=None, ingredients=None, 
     if url_response.status_code == 200:
         # return json.loads(url_response.content.decode('utf-8'))
         unprocessed_json = json.loads(url_response.content)
-
+        return unprocessed_json
     else:
         raise ValueError(error_messages(url_response.status_code))
 
@@ -69,3 +71,7 @@ def extract_food_info(unprocessed_result, target="fdcId"):
     foods_res = unprocessed_result["foods"]
     for x in foods_res:
         print([value for key, value in x.items() if key == target])
+
+
+
+

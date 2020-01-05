@@ -5,7 +5,7 @@
 
 ----
 
-# Installation
+**Installation**
 
 ```
 # clone the repo
@@ -16,17 +16,49 @@ python3 python-fdc/setup.py install
 ```
 ---
 
-# Sample usage
+**Sample usage**
 
 ```
 import python-fdc
 
 ```
 
-# Query the database
+**Query the database**
 
 ```
-res = get_food_search_endpoint(api_key= "my_api_key_here","search_query= "Cheddar Cheese")
+res = get_food_search_endpoint(api_key= "my_api_key_here","search_query= "chicken")
 
 ```
+
+**Extract specific Information**
+
+To extract information about our search result, we can use `extract_food_info`:
+
+```
+extract_food_info(res, "fdcId")
+
+[464651]
+[504905]
+[472365]
+[490957]
+[464664]
+
+
+```
+
+To get food descriptions:
+
+```
+extract_food_info(res, "description")
+
+['CHICKEN']
+['CHICKEN VIENNA SAUSAGE IN CHICKEN BROTH']
+['CHICKEN STOCK']
+['CHICKEN WINGS']
+['CHICKEN ASADA']
+['CHICKEN PICCATA']
+['CHICKEN & RICE']
+
+```
+
 
