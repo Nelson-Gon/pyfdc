@@ -2,9 +2,7 @@
 # We need an API key parameter
 # We need to test rate limits
 # We need to process the JSON or XML into something more meaningful
-import pandas as pd
-import requests
-import json
+
 
 # Setup basics first
 base_url = "https://api.nal.usda.gov/fdc/v1/"
@@ -12,8 +10,27 @@ base_url = "https://api.nal.usda.gov/fdc/v1/"
 # Might use this later
 headers = {'content-Type': 'application/json'}
 
+import requests
+import json
+
 
 # Get Food Search End Points
+
+# define error messages with a very rudimentary switch case
+# Possible to define a custom error handler instead
+# This uses only common(very common) status codes
+
+def error_messages(error_status_code):
+    error_status = {
+        400: "Bad request",
+        401: "Unauthorized access. Do you have the correct API key?!",
+        403: "No access. Please provide a correct API key",
+        404: "The requested resource could not be found",
+        503: "Site is temporarily unavailable, please try again later."
+    }
+
+    return error_status.get(error_status_code, "Unknown status code")
+
 
 # This is overly long
 # api_key, search_query, ingredients, sort_by="PublishedDate",require_all=True, ascending=True, page_number=1
@@ -44,10 +61,7 @@ def get_food_search_endpoint(search_query=None, api_key=None, ingredients=None, 
         unprocessed_json = json.loads(url_response.content)
 
     else:
-        return None
-
-
-
+        raise ValueError(error_messages(url_response.status_code))
 
 
 def extract_food_info(unprocessed_result, target="fdcId"):
@@ -55,8 +69,3 @@ def extract_food_info(unprocessed_result, target="fdcId"):
     foods_res = unprocessed_result["foods"]
     for x in foods_res:
         print([value for key, value in x.items() if key == target])
-
-
-
-
-
