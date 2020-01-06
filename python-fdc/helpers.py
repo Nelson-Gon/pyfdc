@@ -21,6 +21,11 @@ import json
 # This uses only common(very common) status codes
 
 def error_messages(error_status_code):
+    """
+    :param error_status_code: An HTTP error status code as returned by get_food_search_endpoint
+    :return: An informative message based on the provided error_status_code
+
+    """
     error_status = {
         400: "Bad request",
         401: "Unauthorized access. Do you have the correct API key?!",
@@ -40,6 +45,18 @@ def get_food_search_endpoint(search_query=None, api_key=None, ingredients=None, 
                              ascending=True, page_number=None,
                              sort_by="publishedDate",
                              brand_owner="usa"):
+    """
+    :param search_query: A string containing the search term
+    :param api_key: A valid API key obtained from FoodDataCentral
+    :param ingredients: List of ingredients as they appear on the label
+    :param require_all: boolean If true, the search strictly returns only items that contain all words in search_query
+    :param ascending: If True, the results are sorted in ascending order
+    :param page_number: Page Number to show(maximum varies with search_query)
+    :param sort_by: What field should be used to sort the results?
+    :param brand_owner: Who owns the brand?
+    :return: An unprocessed JSON object matching the chosen foods.
+
+    """
     search_query = {'generalSearchInput': search_query,
                     'ingredients': ingredients,
                     'requireAllWords': require_all,
@@ -68,9 +85,21 @@ def get_food_search_endpoint(search_query=None, api_key=None, ingredients=None, 
 
 def extract_food_info(unprocessed_result, target="fdcId"):
     # Deal with only foods
+    """
+
+    :param unprocessed_result: A JSON object from get_food_search_endpoint
+    :param target: What kind of information do you want to extract?
+    Supports values in ["fdcId","description","scientificName","commonNames",
+    "additionalDescriptions","dataType","foodCode","gtinUpc","ndbNumber","publishedDate",
+    "brandOwner","ingredients","allHighlightFields","score"]
+    Further details about these values are available here: https://fdc.nal.usda.gov/api-guide.html
+    :return: Lists with the required target information.
+
+    """
     foods_res = unprocessed_result["foods"]
     for x in foods_res:
         print([value for key, value in x.items() if key == target])
+
 
 
 
