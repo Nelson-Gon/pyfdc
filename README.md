@@ -26,7 +26,7 @@ import python-fdc
 **Query the database**
 
 ```
-res = get_food_search_endpoint(api_key= "my_api_key_here","search_query= "chicken")
+res = query_db(api_key= "my_api_key_here","search_query= "chicken")
 
 ```
 
@@ -61,4 +61,15 @@ extract_food_info(res, "description")
 
 ```
 
+Given a Food DataCentral ID(`fdc_id`), one can get detailed information about a specific food as 
+follows:
+
+```
+res = get_food_details(api_key="my_api_key_here", fdc_id=464651,
+                       process_result=True, 
+target_fields="description")
+
+# 'CHICKEN'
+
+```
 

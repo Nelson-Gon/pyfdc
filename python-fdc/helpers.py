@@ -5,10 +5,10 @@
 
 
 # Setup basics first
-base_url = "https://api.nal.usda.gov/fdc/v1/"
+#base_url = "https://api.nal.usda.gov/fdc/v1/"
 # Setup headers for the url
 # Might use this later
-headers = {'content-Type': 'application/json'}
+# headers = {'content-Type': 'application/json'}
 
 import requests
 import json
@@ -41,10 +41,10 @@ def error_messages(error_status_code):
 # api_key, search_query, ingredients, sort_by="PublishedDate",require_all=True, ascending=True, page_number=1
 # This is too rudimentary but until I think of a better way, I'll use this
 # Maybe use **?
-def get_food_search_endpoint(search_query=None, api_key=None, ingredients=None, require_all=False,
-                             ascending=True, page_number=None,
-                             sort_by="publishedDate",
-                             brand_owner="usa"):
+def query_db(search_query=None, api_key=None, ingredients=None, require_all=False,
+             ascending=True, page_number=None,
+             sort_by="publishedDate",
+             brand_owner="usa"):
     """
     :param search_query: A string containing the search term
     :param api_key: A valid API key obtained from FoodDataCentral
@@ -68,8 +68,8 @@ def get_food_search_endpoint(search_query=None, api_key=None, ingredients=None, 
     # Will add it later
     # This was a bug for some reason
     # Should figure out sometime later
-    #search_query = {key: "desc" for key, value in search_query.items() if key == "sortDirection" and not ascending}
-    #print(search_query)
+    # search_query = {key: "desc" for key, value in search_query.items() if key == "sortDirection" and not ascending}
+    # print(search_query)
 
     request_parameters = {'api_key': api_key}
     url_response = requests.post(r"https://api.nal.usda.gov/fdc/v1/search",
@@ -101,6 +101,25 @@ def extract_food_info(unprocessed_result, target="fdcId"):
         print([value for key, value in x.items() if key == target])
 
 
+def get_food_details(api_key=None, fdc_id=None,process_result=True,target_fields=None):
+    """
 
+    :param api_key: A character string API key obtained from FoodDataCentral
+    :param fdc_id: A valid FoodDataCentral ID
+    :return: Returns  all details matching a given FoodDataCentral ID
+
+    """
+    base_url = "https://api.nal.usda.gov/fdc/v1/{}?api_key={}".format(fdc_id,api_key)
+    url_response = requests.get(base_url)
+
+    if url_response.status_code == 200:
+        if process_result:
+            return url_response.json()[target_fields]
+        else:
+            return url_response.json()
+
+
+    else:
+        raise ValueError(error_messages(url_response.status_code))
 
 
