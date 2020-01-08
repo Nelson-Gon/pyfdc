@@ -1,11 +1,11 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 setup(name='pyfdc',
-        version='0.1',
+        version='0.1.0',
         description='A python interface to FoodDataCentral',
         url='http://www.github.com/Nelson-Gon/pyfdc',
         author='Nelson Gonzabato',
         author_email='gonzabato@hotmail.com',
         license='MIT',
-        packages=['python-fdc'],
+        packages=find_packages(),
         install_requires=['requests'],
         zip_safe=False)
