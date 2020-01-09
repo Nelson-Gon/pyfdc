@@ -1,5 +1,7 @@
 # pyfdc: A python interface to FoodDataCentral
 ![Travis Build](https://travis-ci.com/Nelson-Gon/python-fdc.svg?branch=master)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 
 **This is a work in progress. Things might break and change unannounced. It is still highly experimental.**
 
@@ -23,53 +25,48 @@ import pyfdc
 
 ```
 
-**Query the database**
+**Key Features**
 
+There are two key classes defined in `pyfdc`: 
+1. `FoodSearch` implements the class for objects aimed at querying the database with a search term.
+To get details about foods for a given search term, one can do the following:
 ```
-res = query_db(api_key= "my_api_key_here","search_query= "chicken")
-
-```
-
-**Extract specific Information**
-
-To extract information about our search result, we can use `extract_food_info`:
-
-```
-extract_food_info(res, "fdcId")
-
-[464651]
-[504905]
-[472365]
-[490957]
-[464664]
-
+my_search = FoodSearch(api_key="my_api_key", search_phrase="chicken", brand_owner="usa")
+my_search.get_food_info(target="description")
 
 ```
 
-To get food descriptions:
+The above will result in the following output(truncated):
 
 ```
-extract_food_info(res, "description")
-
 ['CHICKEN']
 ['CHICKEN VIENNA SAUSAGE IN CHICKEN BROTH']
 ['CHICKEN STOCK']
 ['CHICKEN WINGS']
 ['CHICKEN ASADA']
-['CHICKEN PICCATA']
-['CHICKEN & RICE']
 
 ```
 
-Given a Food DataCentral ID(`fdc_id`), one can get detailed information about a specific food as 
-follows:
+For more details, please see the documentation of each of these classes and the
+associated documents.
+
+
+2. `FoodDetails`
+
+The `FoodSearch` class has an important advantage: it can allow us to obtain
+FoodDataCentral(fdcId) IDs using a simple search term. To get full details about a given 
+fdcId, one can do the following:
 
 ```
-res = get_food_details(api_key="my_api_key_here", fdc_id=464651,
-                       process_result=True, 
-target_fields="description")
-
-# 'CHICKEN'
+my_details = FoodDetails(api_key="my_api_key", fdc_id=504905)
+my_details.get_food_details("ingredients")
 
 ```
+This will give us the following output:
+
+```
+ 'CHICKEN VIENNA SAUSAGE IN CHICKEN BROTH'
+
+```
+
 
