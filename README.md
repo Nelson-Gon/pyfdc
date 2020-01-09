@@ -1,4 +1,4 @@
-# python-fdc: A python interface to FoodDataCentral
+# pyfdc: A python interface to FoodDataCentral
 ![Travis Build](https://travis-ci.com/Nelson-Gon/python-fdc.svg?branch=master)
 
 **This is a work in progress. Things might break and change unannounced. It is still highly experimental.**

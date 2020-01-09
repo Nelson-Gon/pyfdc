@@ -14,4 +14,5 @@ before_install:
     - pip install -r requirements.txt
 
 script:
-    - python python-fdc/setup.py install || python3 python-fdc/setup.py install
+    -
+    python pyfdc/setup.py install || python3 pyfdc/setup.py install
