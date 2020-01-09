@@ -9,9 +9,9 @@
 
 ```
 # clone the repo
-git clone https://www.github.com/Nelson-Gon/python-fdc.git
-cd python-fdc
-python3 python-fdc/setup.py install
+git clone https://www.github.com/Nelson-Gon/pyfdc.git
+cd pyfdc
+python3 pyfdc/setup.py install
 
 ```
 ---
@@ -19,7 +19,7 @@ python3 python-fdc/setup.py install
 **Sample usage**
 
 ```
-import python-fdc
+import pyfdc
 
 ```
 
