@@ -1,5 +1,5 @@
 # pyfdc: A python interface to FoodDataCentral
-![Travis Build](https://travis-ci.com/Nelson-Gon/python-fdc.svg?branch=master)
+![Travis Build](https://travis-ci.com/Nelson-Gon/pyfdc.svg?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 
