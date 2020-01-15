@@ -58,7 +58,7 @@ FoodDataCentral(fdcId) IDs using a simple search term. To get full details about
 fdcId, one can do the following:
 
 ```
-my_details = FoodDetails(api_key="my_api_key", fdc_id=504905)
+my_details = FoodDetails(api_key=api_key, fdc_id=504905)
 my_details.get_food_details("ingredients")
 
 ```
@@ -68,5 +68,21 @@ This will give us the following output:
  'CHICKEN VIENNA SAUSAGE IN CHICKEN BROTH'
 
 ```
+To get nutrient details, we can use the following which returns a list of all 
+nutrient details. For brevity, only part of the first list item is shown.
 
+```
+
+list(my_details.get_nutrients())
+
+[      id number                  name  rank unitName
+ 0   1079    291  Fiber, total dietary  1200        g
+ 1   1079    291  Fiber, total dietary  1200        g
+ 2   1079    291  Fiber, total dietary  1200        g
+ 3   1079    291  Fiber, total dietary  1200        g
+ 4   1079    291  Fiber, total dietary  1200        g
+ 5   1079    291  Fiber, total dietary  1200        g
+ 6   1079    291  Fiber, total dietary  1200        g
+
+```
 

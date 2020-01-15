@@ -1,6 +1,7 @@
 import requests
 import json
 import sys
+import pandas as pd
 
 
 # Experimenting with classes
@@ -21,6 +22,11 @@ class FoodSearch(object):
                         'sortField': sort_field,
                         'sortDirection': sort_direction,
                         'brandOwner': self.brand_owner}
+        # Maybe this can be done with a decorator, I just don't know how(yet)
+        available_targets = ["fdcId", "description", "scientificName", "commonNames",
+                             "additionalDescriptions", "dataType", "foodCode",
+                             "gtinUpc", "ndbNumber", "publishedDate", "brandOwner",
+                             "ingredients", "allHighlightFields", "score"]
         request_parameters = {'api_key': self.api_key}
         url_response = requests.post(r"https://api.nal.usda.gov/fdc/v1/search",
                                      json=search_query,
@@ -28,8 +34,11 @@ class FoodSearch(object):
         try:
             url_response.raise_for_status()
             unprocessed_result = json.loads(url_response.content)["foods"]
-            for x in unprocessed_result:
-                print([value for key, value in x.items() if key == target])
+            if target is None or target not in available_targets:
+                raise ValueError("target should be one of {}".format(available_targets))
+            else:
+                for x in unprocessed_result:
+                    print([value for key, value in x.items() if key == target])
 
         except requests.exceptions.HTTPError as error:
             print(error)
@@ -53,6 +62,20 @@ class FoodDetails(object):
         except requests.exceptions.HTTPError as error:
             print(error)
             sys.exit(1)
+
+
+    def get_nutrients(self):
+        """
+        :return: A DataFrame showing nutrient details
+
+        """
+        # This is expensive currently and there might be a better way but it works
+        result_as_df = pd.DataFrame.from_dict(json.loads(json.dumps(self.get_food_details()["foodNutrients"])))
+        #nutrient_results = list()
+        for row in range(result_as_df.shape[0]):
+           yield pd.DataFrame(result_as_df.get("nutrient")[row],
+                                                 index=result_as_df.get("nutrient").keys())
+
 
 
 
