@@ -7,5 +7,6 @@ setup(name='pyfdc',
         author_email='gonzabato@hotmail.com',
         license='MIT',
         packages=find_packages(),
-        install_requires=['requests'],
+        install_requires=['requests', 'pandas'],
+        python_requires='>=3.6',
         zip_safe=False)

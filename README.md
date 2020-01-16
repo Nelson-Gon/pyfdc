@@ -13,7 +13,7 @@
 # clone the repo
 git clone https://www.github.com/Nelson-Gon/pyfdc.git
 cd pyfdc
-python3 pyfdc/setup.py install
+python3 setup.py install
 
 ```
 ---
