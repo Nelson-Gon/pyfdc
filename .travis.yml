@@ -15,4 +15,4 @@ before_install:
 
 script:
     -
-    python pyfdc/setup.py install || python3 pyfdc/setup.py install
+    python setup.py install || python3 setup.py install
