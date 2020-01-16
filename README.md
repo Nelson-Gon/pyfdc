@@ -9,6 +9,18 @@
 
 **Installation**
 
+The simplest way to install is as follows:
+
+Open the Terminal/CMD/Git bash/shell and enter
+
+```
+# You should use your default python interpreter
+python3.7 -m pip install git+https://github.com/Nelson-Gon/pyfdc.git
+
+```
+
+Otherwise:
+
 ```
 # clone the repo
 git clone https://www.github.com/Nelson-Gon/pyfdc.git
