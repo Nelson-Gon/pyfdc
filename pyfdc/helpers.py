@@ -4,7 +4,7 @@ import sys
 import pandas as pd
 
 
-# Experimenting with classes
+# Accesses the food search endpoint
 class FoodSearch(object):
     def __init__(self, api_key, search_phrase, brand_owner=None, ingredients=None):
 
@@ -45,6 +45,7 @@ class FoodSearch(object):
             sys.exit(1)
 
 
+# Accesses the food details endpoint hence the name
 class FoodDetails(object):
     def __init__(self, api_key, fdc_id):
         self.api_key = api_key
@@ -63,7 +64,6 @@ class FoodDetails(object):
             print(error)
             sys.exit(1)
 
-
     def get_nutrients(self):
         """
         :return: A DataFrame showing nutrient details
@@ -71,14 +71,17 @@ class FoodDetails(object):
         """
         # This is expensive currently and there might be a better way but it works
         result_as_df = pd.DataFrame.from_dict(json.loads(json.dumps(self.get_food_details()["foodNutrients"])))
-        #nutrient_results = list()
+        # nutrient_results = list()
         for row in range(result_as_df.shape[0]):
-           yield pd.DataFrame(result_as_df.get("nutrient")[row],
-                                                 index=result_as_df.get("nutrient").keys())
+            yield pd.DataFrame(result_as_df.get("nutrient")[row],
+                               index=result_as_df.get("nutrient").keys())
 
-
-
-
+    def merge_nutrient_results(self):
+        # This merges all the nutrients
+        # Could have been done under get_nutrients but I thought separating them was easier
+        to_merge = self.get_nutrients()
+        all_dfs = [df.set_index("id") for df in to_merge]
+        return pd.concat(all_dfs, axis=0)
 
 
 

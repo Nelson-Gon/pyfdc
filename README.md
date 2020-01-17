@@ -98,3 +98,23 @@ list(my_details.get_nutrients())
 
 ```
 
+To return a merge of the above results, we can use `merge_food_nutrients` as follows:
+
+```
+my_details.merge_nutrient_results()
+     number                          name  rank unitName
+id                                                      
+1079    291          Fiber, total dietary  1200        g
+1079    291          Fiber, total dietary  1200        g
+1079    291          Fiber, total dietary  1200        g
+1079    291          Fiber, total dietary  1200        g
+1079    291          Fiber, total dietary  1200        g
+     ...                           ...   ...      ...
+1258    606  Fatty acids, total saturated  9700        g
+1258    606  Fatty acids, total saturated  9700        g
+1258    606  Fatty acids, total saturated  9700        g
+1258    606  Fatty acids, total saturated  9700        g
+1258    606  Fatty acids, total saturated  9700        g
+[225 rows x 4 columns]
+
+```
