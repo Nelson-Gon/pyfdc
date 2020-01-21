@@ -1,6 +1,10 @@
 # pyfdc: A python interface to FoodDataCentral
 ![Travis Build](https://travis-ci.com/Nelson-Gon/pyfdc.svg?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Nelson-Gon/pyfdc/graphs/commit-activity)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![GitHub issues](https://img.shields.io/github/issues/Nelson-Gon/pyfdc.svg)](https://GitHub.com/Nelson-Gon/pyfdc/issues/)
+[![GitHub issues-closed](https://img.shields.io/github/issues-closed/Nelson-Gon/pyfdc.svg)](https://GitHub.com/Nelson-Gon/pyfdc/issues?q=is%3Aissue+is%3Aclosed)
 
 
 **This is a work in progress. Things might break and change unannounced. It is still highly experimental.**
@@ -43,22 +47,38 @@ There are two key classes defined in `pyfdc`:
 1. `FoodSearch` implements the class for objects aimed at querying the database with a search term.
 To get details about foods for a given search term, one can do the following:
 ```
-my_search = FoodSearch(api_key="my_api_key", search_phrase="chicken", brand_owner="usa")
-my_search.get_food_info(target="description")
+my_search = FoodSearch(api_key=api_key, search_phrase="nugget")
+list(my_search.get_food_info(target="fdcId"))
 
 ```
 
 The above will result in the following output(truncated):
 
 ```
-['CHICKEN']
-['CHICKEN VIENNA SAUSAGE IN CHICKEN BROTH']
-['CHICKEN STOCK']
-['CHICKEN WINGS']
-['CHICKEN ASADA']
+
+[[337348], [337394], [170725], [340673], [337347], [173721], [173722], [337346].....]]
+
+
+```
+To get descriptions of the different results, one could do something like this(truncated again):
+
+```
+[['Chicken nuggets'], ['Turkey, nuggets'], ["WENDY'S, Chicken Nuggets"], ['Nutty Nuggets, Ralston Purina']]]
+
+```
+The simplest way to find out all available `targets` is to simply call:
+
+```
+list(my_search.get_food_info())
+
+```
+**This will of course throw an error showing what options are available.**:
 
 ```
 
+target should be one of ['fdcId', 'description', 'scientificName', 'commonNames', 'additionalDescriptions', 'dataType', 'foodCode', 'gtinUpc', 'ndbNumber', 'publishedDate', 'brandOwner', 'ingredients', 'allHighlightFields', 'score']
+
+```
 For more details, please see the documentation of each of these classes and the
 associated documents.
 

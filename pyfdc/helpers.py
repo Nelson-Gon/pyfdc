@@ -38,7 +38,7 @@ class FoodSearch(object):
                 raise ValueError("target should be one of {}".format(available_targets))
             else:
                 for x in unprocessed_result:
-                    print([value for key, value in x.items() if key == target])
+                    yield [value for key, value in x.items() if key == target and target in available_targets]
 
         except requests.exceptions.HTTPError as error:
             print(error)
@@ -82,6 +82,3 @@ class FoodDetails(object):
         to_merge = self.get_nutrients()
         all_dfs = [df.set_index("id") for df in to_merge]
         return pd.concat(all_dfs, axis=0)
-
-
-
