@@ -2,6 +2,7 @@ import requests
 import json
 import sys
 import pandas as pd
+from itertools import chain
 
 
 # Accesses the food search endpoint
@@ -35,14 +36,22 @@ class FoodSearch(object):
             url_response.raise_for_status()
             unprocessed_result = json.loads(url_response.content)["foods"]
             if target is None or target not in available_targets:
-                raise ValueError("target should be one of {}".format(available_targets))
-            else:
-                for x in unprocessed_result:
-                    yield [value for key, value in x.items() if key == target and target in available_targets]
+                    raise ValueError("target should be one of {}".format(available_targets))
+                else:
+                    for x in unprocessed_result:
+                        yield [value for key, value in x.items() if key == target]
 
         except requests.exceptions.HTTPError as error:
             print(error)
             sys.exit(1)
+
+    def get_multiple_details(self, target_fields=None):
+        result = []
+        for target_key in target_fields:
+            result.append(list(self.get_food_info(target_key)))
+
+        return pd.DataFrame(list(map(lambda x: list(chain.from_iterable(x)), result)),
+                            index= target_fields).transpose()
 
 
 # Accesses the food details endpoint hence the name
@@ -82,3 +91,5 @@ class FoodDetails(object):
         to_merge = self.get_nutrients()
         all_dfs = [df.set_index("id") for df in to_merge]
         return pd.concat(all_dfs, axis=0)
+
+

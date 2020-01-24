@@ -82,6 +82,19 @@ target should be one of ['fdcId', 'description', 'scientificName', 'commonNames'
 For more details, please see the documentation of each of these classes and the
 associated documents.
 
+To get a `DataFrame` from multiple target fields, we can use `get_multiple_details` as shown:
+
+```
+my_search.get_multiple_details(["fdcId","foodCode","description"])
+     fdcId  foodCode                                        description
+0   337348  24198740                                    Chicken nuggets
+1   337394  24208000                                    Turkey, nuggets
+2   170725  57316200                           WENDY'S, Chicken Nuggets
+3   340673  24198735                      Nutty Nuggets, Ralston Purina
+4   337347  24198730                 Chicken nuggets, from school lunch
+5   173721  26100260            Salmon nuggets, breaded, frozen, heated
+6   173722  13120310      Salmon nuggets, cooked as purchased, unheated
+```
 
 2. `FoodDetails`
 
