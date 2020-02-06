@@ -16,6 +16,21 @@ class FoodSearch(object):
 
     def get_food_info(self, target=None, page_number=None, require_all=True, sort_field='publishedDate',
                       sort_direction='asc'):
+
+        """
+
+        :param target: A string specifying which of the available values should be returned. Can also
+        be a list of strings.
+
+        :param page_number: The page number of results to return. Defaults to 1.
+
+        :param require_all: Boolean. If True, the results returned contain foods that contain all of the
+        words in the search field. Defaults to True.
+        :param sort_field: A string specifying which field to use to sort the returned results.
+        :param sort_direction: One of `asc` or `desc` to indicate an ascending or descending sort respectively.
+        :return: A generator object with the required results.
+
+        """
         search_query = {'generalSearchInput': self.search_phrase,
                         'ingredients': self.ingredients,
                         'requireAllWords': require_all,
@@ -61,6 +76,13 @@ class FoodDetails(object):
         self.fdc_id = fdc_id
 
     def get_food_details(self, target_field=None):
+        """
+
+        :param target_field: A string indicating which field to return
+
+        :return: A JSON object with the desired results.
+
+        """
         base_url = "https://api.nal.usda.gov/fdc/v1/{}?api_key={}".format(self.fdc_id, self.api_key)
         url_response = requests.get(base_url)
         try:
@@ -86,6 +108,11 @@ class FoodDetails(object):
                                index=result_as_df.get("nutrient").keys())
 
     def merge_nutrient_results(self):
+        """
+
+        :return: A pandas DataFrame showing merged results
+
+        """
         # This merges all the nutrients
         # Could have been done under get_nutrients but I thought separating them was easier
         to_merge = self.get_nutrients()
