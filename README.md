@@ -44,13 +44,27 @@ import pyfdc
 
 ```
 
+**Set session api key**
+
+To avoid providing an api key for each call, one can set a session api key as follows:
+
+```
+
+set_api_key("my_api_key_here")
+
+
+```
+
+
 **Key Features**
 
 There are two key classes defined in `pyfdc`: 
+
 1. `FoodSearch` implements the class for objects aimed at querying the database with a search term.
 To get details about foods for a given search term, one can do the following:
+
 ```
-my_search = FoodSearch(api_key=api_key, search_phrase="nugget")
+my_search = FoodSearch(search_phrase="nugget")
 list(my_search.get_food_info(target="fdcId"))
 
 ```
@@ -63,25 +77,43 @@ The above will result in the following output(truncated):
 
 
 ```
-To get descriptions of the different results, one could do something like this(truncated again):
+
+To get descriptions of the different results:
+
 
 ```
+
+list(my_search.get_food_info(target="description"))
+
+
+```
+
+This will result in the following result(truncated):
+
+```
+
 [['Chicken nuggets'], ['Turkey, nuggets'], ["WENDY'S, Chicken Nuggets"], ['Nutty Nuggets, Ralston Purina']]]
 
+
 ```
+
 The simplest way to find out all available `targets` is to simply call:
 
 ```
+
 list(my_search.get_food_info())
 
+
 ```
-**This will of course throw an error showing what options are available.**:
+
+**This will throw an error showing what options are available.**:
 
 ```
 
 target should be one of ['fdcId', 'description', 'scientificName', 'commonNames', 'additionalDescriptions', 'dataType', 'foodCode', 'gtinUpc', 'ndbNumber', 'publishedDate', 'brandOwner', 'ingredients', 'allHighlightFields', 'score']
 
 ```
+
 For more details, please see the documentation of each of these classes and the
 associated documents.
 
@@ -106,16 +138,19 @@ FoodDataCentral(fdcId) IDs using a simple search term. To get full details about
 fdcId, one can do the following:
 
 ```
-my_details = FoodDetails(api_key=api_key, fdc_id=504905)
+my_details = FoodDetails(fdc_id=504905)
 my_details.get_food_details("ingredients")
 
 ```
-This will give us the following output:
+
+This will give us the following output(truncated):
 
 ```
- 'CHICKEN VIENNA SAUSAGE IN CHICKEN BROTH'
+
+MECHANICALLY SEPARATED CHICKEN, CHICKEN BROTH,
 
 ```
+
 To get nutrient details, we can use the following which returns a list of all 
 nutrient details. For brevity, only part of the first list item is shown.
 
