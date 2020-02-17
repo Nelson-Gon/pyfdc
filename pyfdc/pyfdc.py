@@ -1,15 +1,20 @@
 import requests
 import json
 import sys
+import os
 import pandas as pd
 from itertools import chain
 
 
 # Accesses the food search endpoint
 class FoodSearch(object):
-    def __init__(self, api_key, search_phrase, brand_owner=None, ingredients=None):
+    def __init__(self, search_phrase, brand_owner=None, ingredients=None):
 
-        self.api_key = api_key
+        if "api_key" in os.environ:
+            self.api_key = os.environ.get("api_key")
+        else:
+            raise EnvironmentError("An api key is required. Set one with set_api_key")
+
         self.search_phrase = search_phrase
         self.brand_owner = brand_owner
         self.ingredients = ingredients
@@ -43,6 +48,7 @@ class FoodSearch(object):
                              "additionalDescriptions", "dataType", "foodCode",
                              "gtinUpc", "ndbNumber", "publishedDate", "brandOwner",
                              "ingredients", "allHighlightFields", "score"]
+
         request_parameters = {'api_key': self.api_key}
         url_response = requests.post(r"https://api.nal.usda.gov/fdc/v1/search",
                                      json=search_query,
@@ -118,5 +124,7 @@ class FoodDetails(object):
         to_merge = self.get_nutrients()
         all_dfs = [df.set_index("id") for df in to_merge]
         return pd.concat(all_dfs, axis=0)
+
+
 
 
