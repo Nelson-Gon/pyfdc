@@ -3,7 +3,7 @@
 import os
 
 
-# Set and get import environ variables
+# Set and get important environmental variables
 
 def set_api_key(api_key):
     os.environ["api_key"] = api_key

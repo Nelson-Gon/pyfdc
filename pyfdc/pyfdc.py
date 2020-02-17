@@ -51,16 +51,16 @@ class FoodSearch(object):
 
         request_parameters = {'api_key': self.api_key}
         url_response = requests.post(r"https://api.nal.usda.gov/fdc/v1/search",
-                                     json=search_query,
-                                     params=request_parameters)
+                                     json=search_query, params=request_parameters)
         try:
             url_response.raise_for_status()
             unprocessed_result = json.loads(url_response.content)["foods"]
             if target is None or target not in available_targets:
-                    raise ValueError("target should be one of {}".format(available_targets))
-                else:
-                    for x in unprocessed_result:
-                        yield [value for key, value in x.items() if key == target]
+                raise ValueError("target should be one of {}".format(available_targets))
+
+            else:
+                for x in unprocessed_result:
+                    yield [value for key, value in x.items() if key == target]
 
         except requests.exceptions.HTTPError as error:
             print(error)
@@ -77,8 +77,14 @@ class FoodSearch(object):
 
 # Accesses the food details endpoint hence the name
 class FoodDetails(object):
-    def __init__(self, api_key, fdc_id):
-        self.api_key = api_key
+    def __init__(self, fdc_id):
+        # There must be a way to avoid repeating this, I haven't learnt how yet
+
+        if "api_key" in os.environ:
+            self.api_key = os.environ.get("api_key")
+        else:
+            raise EnvironmentError("An api key is required. Set one with set_api_key")
+
         self.fdc_id = fdc_id
 
     def get_food_details(self, target_field=None):
