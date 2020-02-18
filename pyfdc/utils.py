@@ -1,5 +1,6 @@
 # Utility functions to use with pyfdc
 
+import os
 
 # Set and get important environmental variables
 
