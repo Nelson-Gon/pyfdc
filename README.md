@@ -40,7 +40,8 @@ python3 setup.py install
 **Sample usage**
 
 ```
-import pyfdc
+from pyfdc import pyfdc
+from pyfdc import utils
 
 ```
 
@@ -50,7 +51,7 @@ To avoid providing an api key for each call, one can set a session api key as fo
 
 ```
 
-set_api_key("my_api_key_here")
+pyfdc.utils.set_api_key("my_api_key_here")
 
 
 ```
@@ -64,7 +65,7 @@ There are two key classes defined in `pyfdc`:
 To get details about foods for a given search term, one can do the following:
 
 ```
-my_search = FoodSearch(search_phrase="nugget")
+my_search = pyfdc.FoodSearch(search_phrase="nugget")
 list(my_search.get_food_info(target="fdcId"))
 
 ```
@@ -138,7 +139,7 @@ FoodDataCentral(fdcId) IDs using a simple search term. To get full details about
 fdcId, one can do the following:
 
 ```
-my_details = FoodDetails(fdc_id=504905)
+my_details = pyfdc.FoodDetails(fdc_id=504905)
 my_details.get_food_details("ingredients")
 
 ```

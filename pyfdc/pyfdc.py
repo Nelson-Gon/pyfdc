@@ -1,11 +1,3 @@
-import requests
-import json
-import sys
-import os
-import pandas as pd
-from itertools import chain
-
-
 # Accesses the food search endpoint
 class FoodSearch(object):
     def __init__(self, search_phrase, brand_owner=None, ingredients=None):
