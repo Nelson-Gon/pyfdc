@@ -40,8 +40,7 @@ python3 setup.py install
 **Sample usage**
 
 ```
-from pyfdc import pyfdc
-from pyfdc import utils
+from pyfdc import *
 
 ```
 
@@ -51,7 +50,7 @@ To avoid providing an api key for each call, one can set a session api key as fo
 
 ```
 
-pyfdc.utils.set_api_key("my_api_key_here")
+utils.set_api_key("my_api_key_here")
 
 
 ```
