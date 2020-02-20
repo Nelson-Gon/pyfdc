@@ -22,7 +22,7 @@ copyright = '2020, Nelson Gonzabato'
 author = 'Nelson Gonzabato'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.1'
+release = '0.1.1.1'
 
 
 # -- General configuration ---------------------------------------------------
