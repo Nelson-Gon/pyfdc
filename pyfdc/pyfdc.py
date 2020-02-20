@@ -4,8 +4,17 @@ import json
 import sys
 import pandas as pd
 from itertools import chain
+import os
 
 class FoodSearch(object):
+
+    """
+
+    This class provides access to and manipulation of the Food Data Central food search end point.
+
+    For more details, please see: https://fdc.nal.usda.gov/api-guide.html
+
+    """
     def __init__(self, search_phrase, brand_owner=None, ingredients=None):
 
         if "api_key" in os.environ:
@@ -75,6 +84,14 @@ class FoodSearch(object):
 
 # Accesses the food details endpoint hence the name
 class FoodDetails(object):
+    """
+
+     This class provides access to and manipulation of the Food Data Central food details end point.
+
+     For more details, please see: https://fdc.nal.usda.gov/api-guide.html
+
+     """
+
     def __init__(self, fdc_id):
         # There must be a way to avoid repeating this, I haven't learnt how yet
 

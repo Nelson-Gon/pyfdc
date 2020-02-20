@@ -10,8 +10,6 @@
 
 
 
-**This is a work in progress. Things might break and change unannounced. It is still highly experimental.**
-
 ----
 
 **Installation**
