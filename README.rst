@@ -8,14 +8,19 @@ pyfdc: A python interface to FoodDataCentral
    :alt: Travis Build
 
 
-.. image:: https://img.shields.io/badge/License-MIT-blue.svg
-   :target: https://opensource.org/licenses/MIT
-   :alt: License: MIT
-
-
 .. image:: https://img.shields.io/badge/Maintained%3F-yes-green.svg
    :target: https://GitHub.com/Nelson-Gon/pyfdc/graphs/commit-activity
    :alt: Maintenance
+
+
+.. image:: https://badge.fury.io/py/pyfdc.svg
+   :target: https://pypi.python.org/pypi/pyfdc/
+   :alt: PyPI version fury.io
+
+
+.. image:: https://img.shields.io/pypi/l/pyfdc.svg
+   :target: https://pypi.python.org/pypi/pyfdc/
+   :alt: PyPI license
 
 
 .. image:: http://www.repostatus.org/badges/latest/active.svg
@@ -48,6 +53,12 @@ pyfdc: A python interface to FoodDataCentral
 **Installation**
 
 The simplest way to install is as follows:
+
+.. code-block::
+
+   pip install pyfdc
+
+Alternatively,
 
 Open the Terminal/CMD/Git bash/shell and enter
 
