@@ -32,10 +32,10 @@ Open the Terminal/CMD/Git bash/shell and enter
 
 ```
 
-python -m pip install git+https://github.com/Nelson-Gon/pyfdc.git
+pip install git+https://github.com/Nelson-Gon/pyfdc.git
 
 # or for the less stable dev version
-python -m pip install git+https://github.com/Nelson-Gon/pyfdc.git@develop
+pip install git+https://github.com/Nelson-Gon/pyfdc.git@develop
 
 ```
 
