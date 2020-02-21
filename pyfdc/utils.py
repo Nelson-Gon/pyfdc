@@ -17,7 +17,7 @@ def set_api_key(api_key):
     os.environ["api_key"] = api_key
 
 
-def signup_for_key():
+def key_signup():
     """
 
     :return: Opens a browser and takes a user to the api key sign up page.

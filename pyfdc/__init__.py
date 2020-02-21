@@ -9,7 +9,9 @@ A python interface to the USDA's FoodDataCentral API
 
 import os
 import sys
+os.chdir(os.path.dirname(os.path.realpath(__file__)) + "/pyfdc")
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+
 
 __author__ = "Nelson Gonzabato"
 __version__ = '0.1.3'

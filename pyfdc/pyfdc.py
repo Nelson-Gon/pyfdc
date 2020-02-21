@@ -3,7 +3,8 @@ import requests
 import json
 import pandas as pd
 from itertools import chain
-from utils import sign_up_for_key
+import os
+from utils import key_signup
 
 
 class FoodSearch(object):
@@ -20,7 +21,7 @@ class FoodSearch(object):
         if "api_key" in os.environ:
             self.api_key = os.environ.get("api_key")
         else:
-            sign_up_for_key()
+            key_signup()
 
         self.search_phrase = search_phrase
         self.brand_owner = brand_owner
@@ -98,7 +99,7 @@ class FoodDetails(object):
         if "api_key" in os.environ:
             self.api_key = os.environ.get("api_key")
         else:
-            sign_up_for_key()
+            key_signup()
 
         self.fdc_id = fdc_id
 
