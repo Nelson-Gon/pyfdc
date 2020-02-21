@@ -5,7 +5,7 @@ import pandas as pd
 from itertools import chain
 import os
 from utils import key_signup
-os.getcwd()
+
 
 class FoodSearch(object):
     """
