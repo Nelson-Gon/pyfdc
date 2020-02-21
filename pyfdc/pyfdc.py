@@ -1,13 +1,12 @@
 # Accesses the food search endpoint
 import requests
 import json
-import sys
 import pandas as pd
 from itertools import chain
-import os
+from utils import sign_up_for_key
+
 
 class FoodSearch(object):
-
     """
 
     This class provides access to and manipulation of the Food Data Central food search end point.
@@ -15,12 +14,13 @@ class FoodSearch(object):
     For more details, please see: https://fdc.nal.usda.gov/api-guide.html
 
     """
+
     def __init__(self, search_phrase, brand_owner=None, ingredients=None):
 
         if "api_key" in os.environ:
             self.api_key = os.environ.get("api_key")
         else:
-            raise EnvironmentError("An api key is required. Set one with set_api_key")
+            sign_up_for_key()
 
         self.search_phrase = search_phrase
         self.brand_owner = brand_owner
@@ -79,7 +79,7 @@ class FoodSearch(object):
             result.append(list(self.get_food_info(target_key)))
 
         return pd.DataFrame(list(map(lambda x: list(chain.from_iterable(x)), result)),
-                            index= target_fields).transpose()
+                            index=target_fields).transpose()
 
 
 # Accesses the food details endpoint hence the name
@@ -98,7 +98,7 @@ class FoodDetails(object):
         if "api_key" in os.environ:
             self.api_key = os.environ.get("api_key")
         else:
-            raise EnvironmentError("An api key is required. Set one with set_api_key")
+            sign_up_for_key()
 
         self.fdc_id = fdc_id
 
@@ -147,5 +147,4 @@ class FoodDetails(object):
         return pd.concat(all_dfs, axis=0)
 
 
-
-
+FoodSearch("nugget")
