@@ -12,7 +12,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
 __author__ = "Nelson Gonzabato"
-__version__ = '0.1.2'
+__version__ = '0.1.3'
 __all__ = ["pyfdc", "utils"]
 
 

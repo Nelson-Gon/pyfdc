@@ -147,4 +147,4 @@ class FoodDetails(object):
         return pd.concat(all_dfs, axis=0)
 
 
-FoodSearch("nugget")
+
