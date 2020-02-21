@@ -23,6 +23,21 @@ pyfdc: A python interface to FoodDataCentral
    :alt: PyPI license
 
 
+.. image:: https://img.shields.io/pypi/dm/pyfdc.svg
+   :target: https://pypi.python.org/pypi/pyfdc/
+   :alt: PyPI download Month
+
+
+.. image:: https://img.shields.io/pypi/dw/pyfdc.svg
+   :target: https://pypi.python.org/pypi/pyfdc/
+   :alt: PyPI download week
+
+
+.. image:: https://img.shields.io/pypi/dd/pyfdc.svg
+   :target: https://pypi.python.org/pypi/pyfdc/
+   :alt: PyPI download day
+
+
 .. image:: http://www.repostatus.org/badges/latest/active.svg
    :target: http://www.repostatus.org/#active
    :alt: Project Status
@@ -52,20 +67,23 @@ pyfdc: A python interface to FoodDataCentral
 
 **Installation**
 
-The simplest way to install is as follows:
+The simplest way to install the latest release is as follows:
 
 .. code-block::
 
    pip install pyfdc
 
-Alternatively,
+To install the development version:
 
 Open the Terminal/CMD/Git bash/shell and enter
 
 .. code-block::
 
-   # You should use your default python interpreter
-   python3.7 -m pip install git+https://github.com/Nelson-Gon/pyfdc.git
+
+   pip install git+https://github.com/Nelson-Gon/pyfdc.git
+
+   # or for the less stable dev version
+   pip install git+https://github.com/Nelson-Gon/pyfdc.git@develop
 
 Otherwise:
 
