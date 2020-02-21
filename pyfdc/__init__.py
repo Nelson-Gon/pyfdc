@@ -11,11 +11,13 @@ import os
 import sys
 os.chdir(os.path.dirname(os.path.realpath(__file__)) + "/pyfdc")
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+from version import __version__
 
 
 __author__ = "Nelson Gonzabato"
-__version__ = '0.1.3'
+__version__ = __version__
 __all__ = ["pyfdc", "utils"]
+
 
 
 

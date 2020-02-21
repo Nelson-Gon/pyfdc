@@ -18,21 +18,24 @@
 
 **Installation**
 
-The simplest way to install is as follows:
+The simplest way to install the latest release is as follows:
 
 ```
 pip install pyfdc
 
 ```
 
-Alternatively,
+To install the development version:
 
 
 Open the Terminal/CMD/Git bash/shell and enter
 
 ```
-# You should use your default python interpreter
-python3.7 -m pip install git+https://github.com/Nelson-Gon/pyfdc.git
+
+python -m pip install git+https://github.com/Nelson-Gon/pyfdc.git@develop
+
+# or for the less stable dev version
+python -m pip install git+https://github.com/Nelson-Gon/pyfdc.git@develop
 
 ```
 
