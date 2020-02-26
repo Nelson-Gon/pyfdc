@@ -94,6 +94,17 @@ Otherwise:
    cd pyfdc
    python3 setup.py install
 
+**Building documentation**
+
+.. code-block::
+
+   # The Makefile here is Windows specific
+
+   cd docs
+   python -m m2r ../README.md
+   # answer yes to overwrite
+   sphinx-build source build
+
 ----
 
 **Sample usage**
@@ -231,3 +242,13 @@ To return a merge of the above results, we can use ``merge_food_nutrients`` as f
    1258    606  Fatty acids, total saturated  9700        g
    1258    606  Fatty acids, total saturated  9700        g
    [225 rows x 4 columns]
+
+**Credit**
+
+
+#. **Original Food Data Central API**
+
+The API interfaced is available `here <https://fdc.nal.usda.gov/api-guide.html>`_
+
+**Thank you very much**. To report any issues, suggestions or improvement, please do so 
+at `issues <https://github.com/Nelson-Gon/pyfdc/issues>`_. 

@@ -11,8 +11,10 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import sys
-sys.path.insert(0,"../..")
+sys.path.insert(0, "../..")
+
 from pyfdc.version import __version__
+
 # -- Project information -----------------------------------------------------
 
 project = 'pyfdc'
@@ -21,10 +23,6 @@ author = 'Nelson Gonzabato'
 
 # The full version, including alpha/beta/rc tags
 release = __version__
-
-
-
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -44,7 +42,6 @@ templates_path = ['_templates']
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
-
 
 # -- Options for HTML output -------------------------------------------------
 

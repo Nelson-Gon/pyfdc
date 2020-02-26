@@ -55,6 +55,8 @@ python3 setup.py install
 # The Makefile here is Windows specific
 
 cd docs
+python -m m2r ../README.md
+# answer yes to overwrite
 sphinx-build source build
 
 ```
@@ -222,5 +224,5 @@ id
 
 The API interfaced is available [here](https://fdc.nal.usda.gov/api-guide.html)
 
-**Thank you very much. To report any issues, suggestions or improvement, please do so 
-[here](https://github.com/Nelson-Gon/pyfdc/issues).** 
+**Thank you very much**. To report any issues, suggestions or improvement, please do so 
+at [issues](https://github.com/Nelson-Gon/pyfdc/issues). 
