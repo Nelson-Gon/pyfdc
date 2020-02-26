@@ -10,7 +10,7 @@ A python interface to the USDA's FoodDataCentral API
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
-from version import __version__
+
 
 
 __author__ = "Nelson Gonzabato"

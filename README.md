@@ -48,6 +48,17 @@ cd pyfdc
 python3 setup.py install
 
 ```
+
+**Building documentation**
+
+```
+# The Makefile here is Windows specific
+
+cd docs
+sphinx-build source build
+
+```
+
 ---
 
 **Sample usage**
@@ -202,3 +213,14 @@ id
 [225 rows x 4 columns]
 
 ```
+
+
+
+**Credit**
+
+1. **Original Food Data Central API**
+
+The API interfaced is available [here](https://fdc.nal.usda.gov/api-guide.html)
+
+**Thank you very much. To report any issues, suggestions or improvement, please do so 
+[here](https://github.com/Nelson-Gon/pyfdc/issues).** 

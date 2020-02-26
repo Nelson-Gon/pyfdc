@@ -7,7 +7,7 @@ dist
 eggs
 sdist
 develop-eggs
-make.bat
+#make.bat
 build*
-Makefile
+#Makefile
 __pycache__
