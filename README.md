@@ -58,6 +58,8 @@ cd docs
 python -m m2r ../README.md
 # answer yes to overwrite
 sphinx-build source build
+# use make on *nix 
+make.bat html
 
 ```
 
