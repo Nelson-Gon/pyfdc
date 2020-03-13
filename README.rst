@@ -211,37 +211,15 @@ nutrient details. For brevity, only part of the first list item is shown.
 
 .. code-block::
 
+   my_details = FoodDetails(fdc_id=504905)
+   my_details.get_nutrients().head()
 
-   list(my_details.get_nutrients())
-
-   [      id number                  name  rank unitName
-    0   1079    291  Fiber, total dietary  1200        g
-    1   1079    291  Fiber, total dietary  1200        g
-    2   1079    291  Fiber, total dietary  1200        g
-    3   1079    291  Fiber, total dietary  1200        g
-    4   1079    291  Fiber, total dietary  1200        g
-    5   1079    291  Fiber, total dietary  1200        g
-    6   1079    291  Fiber, total dietary  1200        g
-
-To return a merge of the above results, we can use ``merge_food_nutrients`` as follows:
-
-.. code-block::
-
-   my_details.merge_nutrient_results()
-        number                          name  rank unitName
-   id                                                      
-   1079    291          Fiber, total dietary  1200        g
-   1079    291          Fiber, total dietary  1200        g
-   1079    291          Fiber, total dietary  1200        g
-   1079    291          Fiber, total dietary  1200        g
-   1079    291          Fiber, total dietary  1200        g
-        ...                           ...   ...      ...
-   1258    606  Fatty acids, total saturated  9700        g
-   1258    606  Fatty acids, total saturated  9700        g
-   1258    606  Fatty acids, total saturated  9700        g
-   1258    606  Fatty acids, total saturated  9700        g
-   1258    606  Fatty acids, total saturated  9700        g
-   [225 rows x 4 columns]
+        id number                                      name  rank unitName
+   0  1079    291                      Fiber, total dietary  1200        g
+   1  1087    301                               Calcium, Ca  5300       mg
+   2  1089    303                                  Iron, Fe  5400       mg
+   3  1092    306                              Potassium, K  5700       mg
+   4  1110    324  Vitamin D (D2 + D3), International Units  8650       IU
 
 **Credit**
 

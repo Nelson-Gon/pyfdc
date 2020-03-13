@@ -2,6 +2,7 @@
 import requests
 import json
 import pandas as pd
+from pandas.io.json import json_normalize
 from itertools import chain
 import os
 from utils import key_signup
@@ -128,24 +129,10 @@ class FoodDetails(object):
         :return: A DataFrame showing nutrient details
 
         """
-        # This is expensive currently and there might be a better way but it works
-        result_as_df = pd.DataFrame.from_dict(json.loads(json.dumps(self.get_food_details()["foodNutrients"])))
-        # nutrient_results = list()
-        for row in range(result_as_df.shape[0]):
-            yield pd.DataFrame(result_as_df.get("nutrient")[row],
-                               index=result_as_df.get("nutrient").keys())
+        use_object = self.get_food_details("foodNutrients")
+        return json_normalize(pd.DataFrame(use_object)["nutrient"])
 
-    def merge_nutrient_results(self):
-        """
 
-        :return: A pandas DataFrame showing merged results
-
-        """
-        # This merges all the nutrients
-        # Could have been done under get_nutrients but I thought separating them was easier
-        to_merge = self.get_nutrients()
-        all_dfs = [df.set_index("id") for df in to_merge]
-        return pd.concat(all_dfs, axis=0)
 
 
 

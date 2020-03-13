@@ -4,6 +4,10 @@
 
 - Added an option to signup for an api key
 
+**Major deletions**
+
+- merge_nutrient_results was removed. Use `get_nutrients`
+instead. 
 
 # pyfdc 0.1.2
 Initial stable release on PyPI.
