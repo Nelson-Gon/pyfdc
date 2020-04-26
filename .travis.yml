@@ -1,6 +1,4 @@
 # CI Travis
-sudo: false
-
 language: python
 
 python:
