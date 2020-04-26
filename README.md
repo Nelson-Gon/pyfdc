@@ -1,7 +1,7 @@
 # pyfdc: A python interface to FoodDataCentral
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3764453.svg)](https://doi.org/10.5281/zenodo.3764453)
 ![Travis Build](https://travis-ci.com/Nelson-Gon/pyfdc.svg?branch=master)
-![Actions](https://github.com/Nelson-Gon/mde/workflows/Test-Package/badge.svg)
+![Test-Package](https://github.com/Nelson-Gon/pyfdc/workflows/Test-Package/badge.svg)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Nelson-Gon/pyfdc/graphs/commit-activity)
 [![PyPI version fury.io](https://badge.fury.io/py/pyfdc.svg)](https://pypi.python.org/pypi/pyfdc/)
 [![PyPI license](https://img.shields.io/pypi/l/pyfdc.svg)](https://pypi.python.org/pypi/pyfdc/)
