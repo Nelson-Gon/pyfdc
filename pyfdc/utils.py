@@ -11,10 +11,10 @@ def set_api_key(api_key):
     """
     :param api_key: Session api key as obtained from Food Data Central
 
-    :return: Sets the Environmental variable "api_key"
+    :return: Sets the Environmental variable "pyfdc_key"
 
     """
-    os.environ["api_key"] = api_key
+    os.environ["pyfdc_key"] = api_key
 
 
 def key_signup():
@@ -25,7 +25,7 @@ def key_signup():
     """
     valid_choices = {'yes': True, 'no': False, 'n': False, 'y': True, 'Y': True,
                      'No': False, 'N': False}
-    answer = input('Please run set_api_key first. Otherwise,do you want to sign up for an api key?!')
+    answer = input('Please run set_api_key first. Otherwise,do you want to sign up for an api key?! Yes or No?')
 
     if valid_choices[answer]:
         sys.stdout.write("\033[0;31m")
