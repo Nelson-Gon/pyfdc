@@ -15,4 +15,11 @@ my_search.get_multiple_details(search_phrase="chicken", target_fields=["fdc_id",
 # Food Details end point
 my_search.get_food_details(fdc_id="630340",target_field="ingredients")
 my_search.get_food_details(fdc_id="504905",target_field="ingredients")
-my_search.get_nutrients(fdc_id="504905")
+
+# kungpao
+list(my_search.get_food_info(search_phrase="kung pao", target="fdc_id"))
+list(my_search.get_food_info(search_phrase="kung pao", target="description"))
+# tofu
+my_search.get_multiple_details(search_phrase="tofu",target_fields=["fdc_id","description"])
+
+my_search.get_nutrients(fdc_id=" 496446")

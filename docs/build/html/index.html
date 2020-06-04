@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyfdc: A python interface to FoodDataCentral &#8212; pyfdc 0.1.3 documentation</title>
+    <title>Welcome to pyfdc’s documentation! &#8212; pyfdc 0.2.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -14,6 +14,7 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pyfdc" href="modules.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -30,139 +31,18 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="pyfdc-a-python-interface-to-fooddatacentral">
-<h1>pyfdc: A python interface to FoodDataCentral<a class="headerlink" href="#pyfdc-a-python-interface-to-fooddatacentral" title="Permalink to this headline">¶</a></h1>
-<a class="reference external image-reference" href="https://travis-ci.com/Nelson-Gon/pyfdc.svg?branch=master"><img alt="Travis Build" src="https://travis-ci.com/Nelson-Gon/pyfdc.svg?branch=master" /></a>
-<a class="reference external image-reference" href="https://GitHub.com/Nelson-Gon/pyfdc/graphs/commit-activity"><img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" /></a>
-<a class="reference external image-reference" href="https://pypi.python.org/pypi/pyfdc/"><img alt="PyPI version fury.io" src="https://badge.fury.io/py/pyfdc.svg" /></a>
-<a class="reference external image-reference" href="https://pypi.python.org/pypi/pyfdc/"><img alt="PyPI license" src="https://img.shields.io/pypi/l/pyfdc.svg" /></a>
-<a class="reference external image-reference" href="https://pypi.python.org/pypi/pyfdc/"><img alt="PyPI download Month" src="https://img.shields.io/pypi/dm/pyfdc.svg" /></a>
-<a class="reference external image-reference" href="https://pypi.python.org/pypi/pyfdc/"><img alt="PyPI download week" src="https://img.shields.io/pypi/dw/pyfdc.svg" /></a>
-<a class="reference external image-reference" href="https://pypi.python.org/pypi/pyfdc/"><img alt="PyPI download day" src="https://img.shields.io/pypi/dd/pyfdc.svg" /></a>
-<a class="reference external image-reference" href="http://www.repostatus.org/#active"><img alt="Project Status" src="http://www.repostatus.org/badges/latest/active.svg" /></a>
-<a class="reference external image-reference" href="https://github.com/Nelson-Gon/pyfdc/commits/master"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Nelson-Gon/pyfdc.svg" /></a>
-<a class="reference external image-reference" href="https://www.python.org/"><img alt="made-with-python" src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg" /></a>
-<a class="reference external image-reference" href="https://GitHub.com/Nelson-Gon/pyfdc/issues/"><img alt="GitHub issues" src="https://img.shields.io/github/issues/Nelson-Gon/pyfdc.svg" /></a>
-<a class="reference external image-reference" href="https://GitHub.com/Nelson-Gon/pyfdc/issues?q=is%3Aissue+is%3Aclosed"><img alt="GitHub issues-closed" src="https://img.shields.io/github/issues-closed/Nelson-Gon/pyfdc.svg" /></a>
-<hr class="docutils" />
-<p><strong>Installation</strong></p>
-<p>The simplest way to install the latest release is as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyfdc</span>
-</pre></div>
-</div>
-<p>To install the development version:</p>
-<p>Open the Terminal/CMD/Git bash/shell and enter</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Nelson</span><span class="o">-</span><span class="n">Gon</span><span class="o">/</span><span class="n">pyfdc</span><span class="o">.</span><span class="n">git</span>
-
-<span class="c1"># or for the less stable dev version</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Nelson</span><span class="o">-</span><span class="n">Gon</span><span class="o">/</span><span class="n">pyfdc</span><span class="o">.</span><span class="n">git</span><span class="nd">@develop</span>
-</pre></div>
-</div>
-<p>Otherwise:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># clone the repo</span>
-<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Nelson</span><span class="o">-</span><span class="n">Gon</span><span class="o">/</span><span class="n">pyfdc</span><span class="o">.</span><span class="n">git</span>
-<span class="n">cd</span> <span class="n">pyfdc</span>
-<span class="n">python3</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
-</pre></div>
-</div>
-<p><strong>Building documentation</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># The Makefile here is Windows specific</span>
-
-<span class="n">cd</span> <span class="n">docs</span>
-<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">m2r</span> <span class="o">../</span><span class="n">README</span><span class="o">.</span><span class="n">md</span>
-<span class="c1"># answer yes to overwrite</span>
-<span class="n">sphinx</span><span class="o">-</span><span class="n">build</span> <span class="n">source</span> <span class="n">build</span>
-</pre></div>
-</div>
-<hr class="docutils" />
-<p><strong>Sample usage</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyfdc</span> <span class="kn">import</span> <span class="o">*</span>
-</pre></div>
-</div>
-<p><strong>Set session api key</strong></p>
-<p>To avoid providing an api key for each call, one can set a session api key as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">utils</span><span class="o">.</span><span class="n">set_api_key</span><span class="p">(</span><span class="s2">&quot;my_api_key_here&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><strong>Key Features</strong></p>
-<p>There are two key classes defined in <code class="docutils literal notranslate"><span class="pre">pyfdc</span></code>:</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">FoodSearch</span></code> implements the class for objects aimed at querying the database with a search term.
-To get details about foods for a given search term, one can do the following:</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_search</span> <span class="o">=</span> <span class="n">pyfdc</span><span class="o">.</span><span class="n">FoodSearch</span><span class="p">(</span><span class="n">search_phrase</span><span class="o">=</span><span class="s2">&quot;nugget&quot;</span><span class="p">)</span>
-<span class="nb">list</span><span class="p">(</span><span class="n">my_search</span><span class="o">.</span><span class="n">get_food_info</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="s2">&quot;fdcId&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-<p>The above will result in the following output(truncated):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">337348</span><span class="p">],</span> <span class="p">[</span><span class="mi">337394</span><span class="p">],</span> <span class="p">[</span><span class="mi">170725</span><span class="p">],</span> <span class="p">[</span><span class="mi">340673</span><span class="p">],</span> <span class="p">[</span><span class="mi">337347</span><span class="p">],</span> <span class="p">[</span><span class="mi">173721</span><span class="p">],</span> <span class="p">[</span><span class="mi">173722</span><span class="p">],</span> <span class="p">[</span><span class="mi">337346</span><span class="p">]</span><span class="o">.....</span><span class="p">]]</span>
-</pre></div>
-</div>
-<p>To get descriptions of the different results:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">my_search</span><span class="o">.</span><span class="n">get_food_info</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="s2">&quot;description&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-<p>This will result in the following result(truncated):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="s1">&#39;Chicken nuggets&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Turkey, nuggets&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;WENDY&#39;S, Chicken Nuggets&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Nutty Nuggets, Ralston Purina&#39;</span><span class="p">]]]</span>
-</pre></div>
-</div>
-<p>The simplest way to find out all available <code class="docutils literal notranslate"><span class="pre">targets</span></code> is to simply call:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">my_search</span><span class="o">.</span><span class="n">get_food_info</span><span class="p">())</span>
-</pre></div>
-</div>
-<p><strong>This will throw an error showing what options are available.</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">target</span> <span class="n">should</span> <span class="n">be</span> <span class="n">one</span> <span class="n">of</span> <span class="p">[</span><span class="s1">&#39;fdcId&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;scientificName&#39;</span><span class="p">,</span> <span class="s1">&#39;commonNames&#39;</span><span class="p">,</span> <span class="s1">&#39;additionalDescriptions&#39;</span><span class="p">,</span> <span class="s1">&#39;dataType&#39;</span><span class="p">,</span> <span class="s1">&#39;foodCode&#39;</span><span class="p">,</span> <span class="s1">&#39;gtinUpc&#39;</span><span class="p">,</span> <span class="s1">&#39;ndbNumber&#39;</span><span class="p">,</span> <span class="s1">&#39;publishedDate&#39;</span><span class="p">,</span> <span class="s1">&#39;brandOwner&#39;</span><span class="p">,</span> <span class="s1">&#39;ingredients&#39;</span><span class="p">,</span> <span class="s1">&#39;allHighlightFields&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>For more details, please see the documentation of each of these classes and the
-associated documents.</p>
-<p>To get a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> from multiple target fields, we can use <code class="docutils literal notranslate"><span class="pre">get_multiple_details</span></code> as shown:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_search</span><span class="o">.</span><span class="n">get_multiple_details</span><span class="p">([</span><span class="s2">&quot;fdcId&quot;</span><span class="p">,</span><span class="s2">&quot;foodCode&quot;</span><span class="p">,</span><span class="s2">&quot;description&quot;</span><span class="p">])</span>
-     <span class="n">fdcId</span>  <span class="n">foodCode</span>                                        <span class="n">description</span>
-<span class="mi">0</span>   <span class="mi">337348</span>  <span class="mi">24198740</span>                                    <span class="n">Chicken</span> <span class="n">nuggets</span>
-<span class="mi">1</span>   <span class="mi">337394</span>  <span class="mi">24208000</span>                                    <span class="n">Turkey</span><span class="p">,</span> <span class="n">nuggets</span>
-<span class="mi">2</span>   <span class="mi">170725</span>  <span class="mi">57316200</span>                           <span class="n">WENDY</span><span class="s1">&#39;S, Chicken Nuggets</span>
-<span class="mi">3</span>   <span class="mi">340673</span>  <span class="mi">24198735</span>                      <span class="n">Nutty</span> <span class="n">Nuggets</span><span class="p">,</span> <span class="n">Ralston</span> <span class="n">Purina</span>
-<span class="mi">4</span>   <span class="mi">337347</span>  <span class="mi">24198730</span>                 <span class="n">Chicken</span> <span class="n">nuggets</span><span class="p">,</span> <span class="kn">from</span> <span class="nn">school</span> <span class="n">lunch</span>
-<span class="mi">5</span>   <span class="mi">173721</span>  <span class="mi">26100260</span>            <span class="n">Salmon</span> <span class="n">nuggets</span><span class="p">,</span> <span class="n">breaded</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">heated</span>
-<span class="mi">6</span>   <span class="mi">173722</span>  <span class="mi">13120310</span>      <span class="n">Salmon</span> <span class="n">nuggets</span><span class="p">,</span> <span class="n">cooked</span> <span class="k">as</span> <span class="n">purchased</span><span class="p">,</span> <span class="n">unheated</span>
-</pre></div>
-</div>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">FoodDetails</span></code></p></li>
-</ol>
-<p>The <code class="docutils literal notranslate"><span class="pre">FoodSearch</span></code> class has an important advantage: it can allow us to obtain
-FoodDataCentral(fdcId) IDs using a simple search term. To get full details about a given
-fdcId, one can do the following:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_details</span> <span class="o">=</span> <span class="n">pyfdc</span><span class="o">.</span><span class="n">FoodDetails</span><span class="p">(</span><span class="n">fdc_id</span><span class="o">=</span><span class="mi">504905</span><span class="p">)</span>
-<span class="n">my_details</span><span class="o">.</span><span class="n">get_food_details</span><span class="p">(</span><span class="s2">&quot;ingredients&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>This will give us the following output(truncated):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MECHANICALLY</span> <span class="n">SEPARATED</span> <span class="n">CHICKEN</span><span class="p">,</span> <span class="n">CHICKEN</span> <span class="n">BROTH</span><span class="p">,</span>
-</pre></div>
-</div>
-<p>To get nutrient details, we can use the following which returns a list of all
-nutrient details. For brevity, only part of the first list item is shown.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_details</span> <span class="o">=</span> <span class="n">FoodDetails</span><span class="p">(</span><span class="n">fdc_id</span><span class="o">=</span><span class="mi">504905</span><span class="p">)</span>
-<span class="n">my_details</span><span class="o">.</span><span class="n">get_nutrients</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-
-     <span class="nb">id</span> <span class="n">number</span>                                      <span class="n">name</span>  <span class="n">rank</span> <span class="n">unitName</span>
-<span class="mi">0</span>  <span class="mi">1079</span>    <span class="mi">291</span>                      <span class="n">Fiber</span><span class="p">,</span> <span class="n">total</span> <span class="n">dietary</span>  <span class="mi">1200</span>        <span class="n">g</span>
-<span class="mi">1</span>  <span class="mi">1087</span>    <span class="mi">301</span>                               <span class="n">Calcium</span><span class="p">,</span> <span class="n">Ca</span>  <span class="mi">5300</span>       <span class="n">mg</span>
-<span class="mi">2</span>  <span class="mi">1089</span>    <span class="mi">303</span>                                  <span class="n">Iron</span><span class="p">,</span> <span class="n">Fe</span>  <span class="mi">5400</span>       <span class="n">mg</span>
-<span class="mi">3</span>  <span class="mi">1092</span>    <span class="mi">306</span>                              <span class="n">Potassium</span><span class="p">,</span> <span class="n">K</span>  <span class="mi">5700</span>       <span class="n">mg</span>
-<span class="mi">4</span>  <span class="mi">1110</span>    <span class="mi">324</span>  <span class="n">Vitamin</span> <span class="n">D</span> <span class="p">(</span><span class="n">D2</span> <span class="o">+</span> <span class="n">D3</span><span class="p">),</span> <span class="n">International</span> <span class="n">Units</span>  <span class="mi">8650</span>       <span class="n">IU</span>
-</pre></div>
-</div>
-<p><strong>Credit</strong></p>
-<ol class="arabic simple">
-<li><p><strong>Original Food Data Central API</strong></p></li>
-</ol>
-<p>The API interfaced is available <a class="reference external" href="https://fdc.nal.usda.gov/api-guide.html">here</a></p>
-<p><strong>Thank you very much</strong>. To report any issues, suggestions or improvement, please do so
-at <a class="reference external" href="https://github.com/Nelson-Gon/pyfdc/issues">issues</a>.</p>
+  <div class="section" id="welcome-to-pyfdc-s-documentation">
+<h1>Welcome to pyfdc’s documentation!<a class="headerlink" href="#welcome-to-pyfdc-s-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">pyfdc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyfdc.html">pyfdc package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">pyfdc: A python interface to FoodDataCentral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">pyfdc 0.1.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html#pyfdc-0-1-2">pyfdc 0.1.2</a></li>
+</ul>
 </div>
 </div>
 <div class="section" id="indices-and-tables">
@@ -191,11 +71,18 @@ at <a class="reference external" href="https://github.com/Nelson-Gon/pyfdc/issue
 
 
 <h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">pyfdc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">pyfdc: A python interface to FoodDataCentral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">pyfdc 0.1.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html#pyfdc-0-1-2">pyfdc 0.1.2</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="modules.html" title="next chapter">pyfdc</a></li>
   </ul></li>
 </ul>
 </div>
