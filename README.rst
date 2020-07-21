@@ -33,34 +33,14 @@ pyfdc: A python interface to FoodDataCentral
    :alt: PyPI license
 
 
-.. image:: https://img.shields.io/pypi/dm/pyfdc.svg
-   :target: https://pypi.python.org/pypi/pyfdc/
-   :alt: PyPI download Month
-
-
-.. image:: https://img.shields.io/pypi/dw/pyfdc.svg
-   :target: https://pypi.python.org/pypi/pyfdc/
-   :alt: PyPI download week
-
-
-.. image:: https://img.shields.io/pypi/dd/pyfdc.svg
-   :target: https://pypi.python.org/pypi/pyfdc/
-   :alt: PyPI download day
-
-
 .. image:: http://www.repostatus.org/badges/latest/active.svg
    :target: http://www.repostatus.org/#active
    :alt: Project Status
  
- 
+
 .. image:: https://img.shields.io/github/last-commit/Nelson-Gon/pyfdc.svg
    :target: https://github.com/Nelson-Gon/pyfdc/commits/master
    :alt: GitHub last commit
-
-
-.. image:: https://img.shields.io/badge/Made%20with-Python-1f425f.svg
-   :target: https://www.python.org/
-   :alt: made-with-python
 
 
 .. image:: https://img.shields.io/github/issues/Nelson-Gon/pyfdc.svg
