@@ -222,3 +222,21 @@ The API interfaced is available [here](https://fdc.nal.usda.gov/api-guide.html)
 at [issues](https://github.com/Nelson-Gon/pyfdc/issues). 
 
 > “Before software can be reusable it first has to be usable.” – Ralph Johnson
+
+---
+
+If you would like to cite this work, please use:
+
+Nelson Gonzabato(2020) pyfdc: A python interface to FoodDataCentral, https://github.com/Nelson-Gon/pyfdc
+
+BibTex:
+
+@misc{Gonzabato2020,
+  author = {Gonzabato, N},
+  title = {pyfdc: A python interface to FoodDataCentral},
+  year = {2020},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/Nelson-Gon/pyfdc}},
+  commit = {}
+} 
