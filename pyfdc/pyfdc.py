@@ -27,26 +27,20 @@ class FoodDataCentral(object):
         else:
             key_signup()
 
-    def get_food_info(self, search_phrase=None, ingredients=None, brand_owner= None,
-                      target=None, page_number=None, page_size = 50,
+    def get_food_info(self, search_phrase=None, ingredients=None, brand_owner=None,
+                      target=None, page_number=None, page_size=50,
                       sort_field=None, sort_direction='asc'):
 
         """
-
         :param brand_owner: str Defaults to None
         :param ingredients: str to limit the search to certain ingredients
         :param search_phrase: str A search phrase eg "chicken"
-        :param target: A string specifying which of the available values should be returned. Can also
-        be a list of strings.
-
-        :param page_number: The page number of results to return. Defaults to 1.
-
-        :param require_all: Boolean. If True, the results returned contain foods that contain all of the
-        words in the search field. Defaults to True.
+        :param target: A string or list specifying which of the available values should be returned.
+        :param page_number: Page number. Defaults to 1.
+        :param page_size: Number of results returned
         :param sort_field: A string specifying which field to use to sort the returned results.
-        :param sort_direction: One of `asc` or `desc` to indicate an ascending or descending sort respectively.
+        :param sort_direction: One of "asc" or "desc" to indicate an ascending or descending sort respectively.
         :return: A generator object with the required results.
-
         """
 
         search_query = {'query': search_phrase,
@@ -68,12 +62,11 @@ class FoodDataCentral(object):
                              "brand_owner": 'brandOwner',
                              "ingredients": 'ingredients',
                              "score": 'score'}
-        headers = {'Accept':'application/json'}
-        request_parameters = {'api_key': self.api_key}
+
         # docs
         # https://fdc.nal.usda.gov/api-spec/fdc_api.html#/FDC/postFoodsSearch
         url_response = requests.get("https://api.nal.usda.gov/fdc/v1/foods/search?api_key={}".format(self.api_key),
-                                     params = search_query)
+                                    params=search_query)
         try:
             url_response.raise_for_status()
             unprocessed_result = json.loads(url_response.content)["foods"]
@@ -87,19 +80,18 @@ class FoodDataCentral(object):
         except requests.exceptions.HTTPError as error:
             print(error)
 
-
     def get_multiple_details(self, search_phrase=None, target_fields=None, **kwargs):
         """
-
+        :param search_phrase: A character string to search for.
         :param target_fields: A list of targets eg ['fdc_id','description']
         :return: A pandas DataFrame
         """
         result = []
         for target_key in target_fields:
-            result.append(list(self.get_food_info(search_phrase=search_phrase, target=target_key,**kwargs)))
+            result.append(list(self.get_food_info(search_phrase=search_phrase, target=target_key, **kwargs)))
 
         return DataFrame(list(map(lambda x: list(chain.from_iterable(x)), result)),
-                            index=target_fields).transpose()
+                         index=target_fields).transpose()
 
     def get_food_details(self, fdc_id=None, target_field=None):
         """
@@ -123,11 +115,10 @@ class FoodDataCentral(object):
         except requests.exceptions.HTTPError as error:
             print(error)
 
-
     def get_nutrients(self, **kwargs):
         """
         :return: A DataFrame showing nutrient details
 
         """
-        use_object = self.get_food_details(target_field="foodNutrients",**kwargs)
+        use_object = self.get_food_details(target_field="foodNutrients", **kwargs)
         return json_normalize(DataFrame(use_object)["nutrient"])
