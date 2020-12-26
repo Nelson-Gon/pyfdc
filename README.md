@@ -1,10 +1,12 @@
 # pyfdc: A python interface to FoodDataCentral
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3764453.svg)](https://doi.org/10.5281/zenodo.3764453)
 ![Travis Build](https://travis-ci.com/Nelson-Gon/pyfdc.svg?branch=master)
+[![Documentation Status](https://readthedocs.org/projects/pyfdc/badge/?version=latest)](https://pyfdc.readthedocs.io/en/latest/?badge=latest)
 ![Test-Package](https://github.com/Nelson-Gon/pyfdc/workflows/Test-Package/badge.svg)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Nelson-Gon/pyfdc/graphs/commit-activity)
 [![PyPI version fury.io](https://badge.fury.io/py/pyfdc.svg)](https://pypi.python.org/pypi/pyfdc/)
 [![PyPI license](https://img.shields.io/pypi/l/pyfdc.svg)](https://pypi.python.org/pypi/pyfdc/)
+[![PyPI Downloads Month](https://img.shields.io/pypi/dm/pyfdc.svg)](https://pypi.python.org/pypi/pyfdc/)
 [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) 
 [![GitHub last commit](https://img.shields.io/github/last-commit/Nelson-Gon/pyfdc.svg)](https://github.com/Nelson-Gon/pyfdc/commits/master)
 [![GitHub issues](https://img.shields.io/github/issues/Nelson-Gon/pyfdc.svg)](https://GitHub.com/Nelson-Gon/pyfdc/issues/)
@@ -12,13 +14,11 @@
 
 
 
-----
-
 **Installation**
 
 The simplest way to install the latest release is as follows:
 
-```
+```shell
 pip install pyfdc
 
 ```
@@ -28,7 +28,7 @@ To install the development version:
 
 Open the Terminal/CMD/Git bash/shell and enter
 
-```
+```shell
 
 pip install git+https://github.com/Nelson-Gon/pyfdc.git
 
@@ -39,7 +39,7 @@ pip install git+https://github.com/Nelson-Gon/pyfdc.git@develop
 
 Otherwise:
 
-```
+```shell
 # clone the repo
 git clone https://www.github.com/Nelson-Gon/pyfdc.git
 cd pyfdc
@@ -47,14 +47,11 @@ python3 setup.py install
 
 ```
 
-**Building documentation**
 
-
----
 
 **Sample usage**
 
-```
+```python
 from pyfdc import *
 
 ```
@@ -63,7 +60,7 @@ from pyfdc import *
 
 To avoid providing an api key for each call, one can set a session api key as follows:
 
-```
+```python
 
 utils.set_api_key("my_api_key_here")
 
@@ -79,22 +76,20 @@ for more details.:
 
 To instantiate an object:
 
-```
+```python
 my_search = FoodDataCentral()
-
-````
+```
 
 To get details about foods for a given search term, one can do the following:
 
-```
+```python
 
 list(my_search.get_food_info(search_phrase="kung pao", target="fdc_id"))
-
 ```
 
 The above will result in the following output(truncated):
 
-```
+```shell
 
 [[783264],
  [783328],
@@ -112,7 +107,7 @@ The above will result in the following output(truncated):
 To get descriptions of the different results:
 
 
-```
+```python
 
 list(my_search.get_food_info(search_phrase="kung pao", target="description"))
 
@@ -121,7 +116,7 @@ list(my_search.get_food_info(search_phrase="kung pao", target="description"))
 
 This will result in the following result(truncated):
 
-```
+```shell
 
 [['Kung Pao beef'],
  ['Kung pao chicken'],
@@ -137,7 +132,7 @@ This will result in the following result(truncated):
 
 The simplest way to find out all available `targets` is to simply call:
 
-```
+```python
 
 list(my_search.get_food_info())
 
@@ -155,7 +150,7 @@ For more details, please see the docs for each function or raise an issue.
 
 To get a `DataFrame` from multiple target fields, we can use `get_multiple_details` as shown:
 
-```
+```shell
 my_my_search.get_multiple_details(search_phrase="tofu",target_fields=["fdc_id","description"])
 Out[128]: 
     fdc_id                                        description
@@ -172,7 +167,7 @@ Out[128]:
 
 To get full details about a given `fdcId`, one can do the following:
 
-```
+```python
 
 my_search.get_food_details(fdc_id=504905, target_field="ingredients")
 
@@ -180,7 +175,7 @@ my_search.get_food_details(fdc_id=504905, target_field="ingredients")
 
 This will give us the following output(truncated):
 
-```
+```shell
 
 'MECHANICALLY SEPARATED CHICKEN, CHICKEN BROTH, WATER, CONTAINS LESS THAN 2% OF: SALT, SUGAR, SPICES, SODIUM PHOSPHATE, SODIUM ASCORBATE, SODIUM NITRITE, 
 NATURAL FLAVORS, EXTRACTIVES OF PAPRIKA.'
@@ -190,7 +185,7 @@ NATURAL FLAVORS, EXTRACTIVES OF PAPRIKA.'
 To get nutrient details, we can use the following which returns a list of all 
 nutrient details. For brevity, only part of the first list item is shown.
 
-```
+```shell
 
 my_search.get_nutrients(fdc_id=" 496446")
 Out[131]: 
@@ -231,6 +226,7 @@ Nelson Gonzabato(2020) pyfdc: A python interface to FoodDataCentral, https://git
 
 BibTex:
 
+```shell
 @misc{Gonzabato2020,
   author = {Gonzabato, N},
   title = {pyfdc: A python interface to FoodDataCentral},
@@ -240,3 +236,4 @@ BibTex:
   howpublished = {\url{https://github.com/Nelson-Gon/pyfdc}},
   commit = {ead2bef877ef28ff75b949267f95cf1ceb09c5c4}
 } 
+```

@@ -13,6 +13,11 @@ pyfdc: A python interface to FoodDataCentral
    :alt: Travis Build
 
 
+.. image:: https://readthedocs.org/projects/pyfdc/badge/?version=latest
+   :target: https://pyfdc.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
+
+
 .. image:: https://github.com/Nelson-Gon/pyfdc/workflows/Test-Package/badge.svg
    :target: https://github.com/Nelson-Gon/pyfdc/workflows/Test-Package/badge.svg
    :alt: Test-Package
@@ -35,32 +40,17 @@ pyfdc: A python interface to FoodDataCentral
 
 .. image:: https://img.shields.io/pypi/dm/pyfdc.svg
    :target: https://pypi.python.org/pypi/pyfdc/
-   :alt: PyPI download Month
-
-
-.. image:: https://img.shields.io/pypi/dw/pyfdc.svg
-   :target: https://pypi.python.org/pypi/pyfdc/
-   :alt: PyPI download week
-
-
-.. image:: https://img.shields.io/pypi/dd/pyfdc.svg
-   :target: https://pypi.python.org/pypi/pyfdc/
-   :alt: PyPI download day
+   :alt: PyPI Downloads Month
 
 
 .. image:: http://www.repostatus.org/badges/latest/active.svg
    :target: http://www.repostatus.org/#active
    :alt: Project Status
  
- 
+
 .. image:: https://img.shields.io/github/last-commit/Nelson-Gon/pyfdc.svg
    :target: https://github.com/Nelson-Gon/pyfdc/commits/master
    :alt: GitHub last commit
-
-
-.. image:: https://img.shields.io/badge/Made%20with-Python-1f425f.svg
-   :target: https://www.python.org/
-   :alt: made-with-python
 
 
 .. image:: https://img.shields.io/github/issues/Nelson-Gon/pyfdc.svg
@@ -73,13 +63,11 @@ pyfdc: A python interface to FoodDataCentral
    :alt: GitHub issues-closed
 
 
-----
-
 **Installation**
 
 The simplest way to install the latest release is as follows:
 
-.. code-block::
+.. code-block:: shell
 
    pip install pyfdc
 
@@ -87,7 +75,7 @@ To install the development version:
 
 Open the Terminal/CMD/Git bash/shell and enter
 
-.. code-block::
+.. code-block:: shell
 
 
    pip install git+https://github.com/Nelson-Gon/pyfdc.git
@@ -97,20 +85,16 @@ Open the Terminal/CMD/Git bash/shell and enter
 
 Otherwise:
 
-.. code-block::
+.. code-block:: shell
 
    # clone the repo
    git clone https://www.github.com/Nelson-Gon/pyfdc.git
    cd pyfdc
    python3 setup.py install
 
-**Building documentation**
-
-----
-
 **Sample usage**
 
-.. code-block::
+.. code-block:: python
 
    from pyfdc import *
 
@@ -118,7 +102,7 @@ Otherwise:
 
 To avoid providing an api key for each call, one can set a session api key as follows:
 
-.. code-block::
+.. code-block:: python
 
 
    utils.set_api_key("my_api_key_here")
@@ -131,22 +115,20 @@ for more details.:
 
 To instantiate an object:
 
-.. code-block::
+.. code-block:: python
 
    my_search = FoodDataCentral()
 
-   `
-
 To get details about foods for a given search term, one can do the following:
 
-.. code-block::
+.. code-block:: python
 
 
    list(my_search.get_food_info(search_phrase="kung pao", target="fdc_id"))
 
 The above will result in the following output(truncated):
 
-.. code-block::
+.. code-block:: shell
 
 
    [[783264],
@@ -161,14 +143,14 @@ The above will result in the following output(truncated):
 
 To get descriptions of the different results:
 
-.. code-block::
+.. code-block:: python
 
 
    list(my_search.get_food_info(search_phrase="kung pao", target="description"))
 
 This will result in the following result(truncated):
 
-.. code-block::
+.. code-block:: shell
 
 
    [['Kung Pao beef'],
@@ -183,7 +165,7 @@ This will result in the following result(truncated):
 
 The simplest way to find out all available ``targets`` is to simply call:
 
-.. code-block::
+.. code-block:: python
 
 
    list(my_search.get_food_info())
@@ -199,7 +181,7 @@ For more details, please see the docs for each function or raise an issue.
 
 To get a ``DataFrame`` from multiple target fields, we can use ``get_multiple_details`` as shown:
 
-.. code-block::
+.. code-block:: shell
 
    my_my_search.get_multiple_details(search_phrase="tofu",target_fields=["fdc_id","description"])
    Out[128]: 
@@ -215,14 +197,14 @@ To get a ``DataFrame`` from multiple target fields, we can use ``get_multiple_de
 
 To get full details about a given ``fdcId``\ , one can do the following:
 
-.. code-block::
+.. code-block:: python
 
 
    my_search.get_food_details(fdc_id=504905, target_field="ingredients")
 
 This will give us the following output(truncated):
 
-.. code-block::
+.. code-block:: shell
 
 
    'MECHANICALLY SEPARATED CHICKEN, CHICKEN BROTH, WATER, CONTAINS LESS THAN 2% OF: SALT, SUGAR, SPICES, SODIUM PHOSPHATE, SODIUM ASCORBATE, SODIUM NITRITE, 
@@ -231,7 +213,7 @@ This will give us the following output(truncated):
 To get nutrient details, we can use the following which returns a list of all 
 nutrient details. For brevity, only part of the first list item is shown.
 
-.. code-block::
+.. code-block:: shell
 
 
    my_search.get_nutrients(fdc_id=" 496446")
@@ -263,3 +245,23 @@ The API interfaced is available `here <https://fdc.nal.usda.gov/api-guide.html>`
 
    “Before software can be reusable it first has to be usable.” – Ralph Johnson
 
+
+----
+
+If you would like to cite this work, please use:
+
+Nelson Gonzabato(2020) pyfdc: A python interface to FoodDataCentral, https://github.com/Nelson-Gon/pyfdc
+
+BibTex:
+
+.. code-block:: shell
+
+   @misc{Gonzabato2020,
+     author = {Gonzabato, N},
+     title = {pyfdc: A python interface to FoodDataCentral},
+     year = {2020},
+     publisher = {GitHub},
+     journal = {GitHub repository},
+     howpublished = {\url{https://github.com/Nelson-Gon/pyfdc}},
+     commit = {ead2bef877ef28ff75b949267f95cf1ceb09c5c4}
+   }
