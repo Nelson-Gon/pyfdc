@@ -13,6 +13,7 @@ Welcome to pyfdc's documentation!
    modules
    README
    changelog
+   CONTRIBUTING
 
 
 Indices and tables
