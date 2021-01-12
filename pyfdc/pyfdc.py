@@ -4,10 +4,8 @@ import json
 from pandas import DataFrame
 from pandas.io.json import json_normalize
 from itertools import chain
-from pyfdc.utils import key_signup
-from sys import exit
-from requests.auth import HTTPBasicAuth
-from bs4 import BeautifulSoup
+from utils import key_signup
+import os
 
 
 class FoodDataCentral(object):
@@ -65,7 +63,7 @@ class FoodDataCentral(object):
 
         # docs
         # https://fdc.nal.usda.gov/api-spec/fdc_api.html#/FDC/postFoodsSearch
-        url_response = requests.get("https://api.nal.usda.gov/fdc/v1/foods/search?api_key={}".format(self.api_key),
+        url_response = requests.get(f"https://api.nal.usda.gov/fdc/v1/foods/search?api_key={self.api_key}",
                                     params=search_query)
         try:
             url_response.raise_for_status()
@@ -73,9 +71,8 @@ class FoodDataCentral(object):
             if target is None or target not in available_targets.keys():
                 raise KeyError("target should be one of {}".format(available_targets.keys()))
 
-            else:
-                for x in unprocessed_result:
-                    yield [value for key, value in x.items() if key == available_targets[target]]
+            for x in unprocessed_result:
+                yield [value for key, value in x.items() if key == available_targets[target]]
 
         except requests.exceptions.HTTPError as error:
             print(error)
@@ -104,7 +101,7 @@ class FoodDataCentral(object):
         :return: A JSON object with the desired results.
 
         """
-        base_url = "https://api.nal.usda.gov/fdc/v1/{}?api_key={}".format(fdc_id, self.api_key)
+        base_url = f"https://api.nal.usda.gov/fdc/v1/{fdc_id}?api_key={self.api_key}"
         url_response = requests.get(base_url)
         try:
             url_response.raise_for_status()

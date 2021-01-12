@@ -183,17 +183,15 @@ To get a ``DataFrame`` from multiple target fields, we can use ``get_multiple_de
 
 .. code-block:: shell
 
-   my_my_search.get_multiple_details(search_phrase="tofu",target_fields=["fdc_id","description"])
-   Out[128]: 
-       fdc_id                                        description
-   0   496446                                               TOFU
-   1   411177                                               TOFU
-   2   514921                                               TOFU
-   3   388749                                               TOFU
-   4   498775                                               TOFU
-   5   391880                                               TOFU
-   6   392410                                               TOFU
-   7   167722                                        Tofu yogurt
+
+   my_search.get_multiple_details(search_phrase="noodle",target_fields=["fdc_id","description", "ndb_number"])[:5]
+
+       fdc_id          description ndb_number
+   0   508613               NOODLE      20134
+   1   546979               NOODLE      20133
+   2  1101523      Noodles, cooked      20113
+   3  1102193  Adobo, with noodles      20109
+   4  1102334       Noodle pudding      20409
 
 To get full details about a given ``fdcId``\ , one can do the following:
 
