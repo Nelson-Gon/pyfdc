@@ -7,14 +7,18 @@ import sys
 
 # Set and get important environmental variables
 
-def set_api_key(api_key):
+def set_api_key(api_key=None):
     """
     :param api_key: Session api key as obtained from Food Data Central
 
     :return: Sets the Environmental variable "pyfdc_key"
 
     """
-    os.environ["pyfdc_key"] = api_key
+    if "pyfdc_key" not in os.environ.keys():
+        os.environ["pyfdc_key"] = api_key
+    else:
+        print("pyfdc_key is already a valid key")
+        pass
 
 
 def key_signup():

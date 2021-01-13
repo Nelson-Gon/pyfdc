@@ -1,8 +1,7 @@
 # Accesses the food search endpoint
 import requests
 import json
-from pandas import DataFrame
-from pandas.io.json import json_normalize
+from pandas import DataFrame, json_normalize
 from itertools import chain
 from utils import key_signup
 import os
@@ -25,9 +24,9 @@ class FoodDataCentral(object):
         else:
             key_signup()
 
-    def get_food_info(self, search_phrase=None, ingredients=None, brand_owner=None,
-                      target=None, page_number=None, page_size=50,
-                      sort_field=None, sort_direction='asc'):
+    def get_food_info_internal(self, search_phrase=None, ingredients=None, brand_owner=None,
+                               target=None, page_number=None, page_size=50,
+                               sort_field=None, sort_direction='asc'):
 
         """
         :param brand_owner: str Defaults to None
@@ -77,15 +76,29 @@ class FoodDataCentral(object):
         except requests.exceptions.HTTPError as error:
             print(error)
 
-    def get_multiple_details(self, search_phrase=None, target_fields=None, **kwargs):
+    def get_food_info(self, search_phrase=None, target_fields=None,
+                      ingredients=None, brand_owner=None, page_number=None, page_size=50,
+                      sort_field=None, sort_direction='asc'):
         """
         :param search_phrase: A character string to search for.
         :param target_fields: A list of targets eg ['fdc_id','description']
+        :param brand_owner: str Defaults to None
+        :param ingredients: str to limit the search to certain ingredients
+        :param search_phrase: str A search phrase eg "chicken"
+        :param page_number: Page number. Defaults to 1.
+        :param page_size: Number of results returned
+        :param sort_field: A string specifying which field to use to sort the returned results.
+        :param sort_direction: One of "asc" or "desc" to indicate an ascending or descending sort respectively.
         :return: A pandas DataFrame
         """
+        # TODO: Avoid two functions when one will do aka drop get_food_info_internal
         result = []
         for target_key in target_fields:
-            result.append(list(self.get_food_info(search_phrase=search_phrase, target=target_key, **kwargs)))
+            result.append(list(self.get_food_info_internal(search_phrase=search_phrase, target=target_key,
+                                                           ingredients=ingredients,
+                                                           brand_owner=brand_owner,
+                                                           page_number=page_number, page_size=page_size,
+                                                           sort_field=sort_field, sort_direction=sort_direction)))
 
         return DataFrame(list(map(lambda x: list(chain.from_iterable(x)), result)),
                          index=target_fields).transpose()
@@ -96,26 +109,28 @@ class FoodDataCentral(object):
         Accesses the FoodDetails EndPoint
 
         :param fdc_id: A FoodDataCentral Food ID
-        :param target_field: A string indicating which field to return
+        :param target_field: A string indicating which field to return e.g nutrients
 
         :return: A JSON object with the desired results.
 
         """
+
         base_url = f"https://api.nal.usda.gov/fdc/v1/{fdc_id}?api_key={self.api_key}"
         url_response = requests.get(base_url)
         try:
             url_response.raise_for_status()
-            if target_field is None:
-                return url_response.json()
+            result = url_response.json()
+
+            if target_field == "nutrients":
+                result_custom = url_response.json()["foodNutrients"]
+                result = json_normalize(DataFrame(result_custom)["nutrient"])
             else:
-                return url_response.json()[target_field]
+                result = result[target_field]
+
+
+            return result
+
         except requests.exceptions.HTTPError as error:
             print(error)
 
-    def get_nutrients(self, **kwargs):
-        """
-        :return: A DataFrame showing nutrient details
 
-        """
-        use_object = self.get_food_details(target_field="foodNutrients", **kwargs)
-        return json_normalize(DataFrame(use_object)["nutrient"])

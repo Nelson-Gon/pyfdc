@@ -41,7 +41,7 @@ Otherwise:
 
 ```shell
 # clone the repo
-git clone https://www.github.com/Nelson-Gon/pyfdc.git
+git clone git@github.com:Nelson-Gon/pyfdc.git
 cd pyfdc
 python3 setup.py install
 
@@ -52,6 +52,7 @@ python3 setup.py install
 **Sample usage**
 
 ```python
+
 from pyfdc import *
 
 ```
@@ -70,7 +71,7 @@ utils.set_api_key("my_api_key_here")
 
 **Key Features**
 
-There is now one major class `FoodDataCentral`. 
+There is one major class `FoodDataCentral`. 
 See the [changelog](https://github.com/Nelson-Gon/pyfdc/blob/master/changelog.md) 
 for more details.:
 
@@ -84,86 +85,29 @@ To get details about foods for a given search term, one can do the following:
 
 ```python
 
-list(my_search.get_food_info(search_phrase="kung pao", target="fdc_id"))
+my_search.get_food_info(search_phrase="sandwich",target_fields=["fdc_id","description","ingredients"]).head()
+
 ```
 
-The above will result in the following output(truncated):
+The above will result in the following output:
 
 ```shell
 
-[[783264],
- [783328],
- [783287],
- [783389],
- [167676],
- [668446],
- [897958],
- [736522],
- [927376],
+    fdc_id description                                        ingredients
+0  485360    SANDWICH  TUSCAN BREAD (ENRICHED WHEAT FLOUR [WHEAT FLOU...
+1  481873    SANDWICH  WHOLE GRAIN RYE FLOUR, VEGETABLE OIL (PALM, CA...
+2  507441    SANDWICH  ONION ROLL [ENRICHED UNBLEACHED FLOUR (WHEAT F...
+3  510847    SANDWICH  HONEY WHOLE WHEAT BREAD* [WHOLE WHEAT FLOUR*, ...
+4  529731    SANDWICH  REDUCED FAT ICE CREAM [MILK, CREAM, FUDGE SAUC...
+ 
 
 
 ```
 
-To get descriptions of the different results:
-
-
-```python
-
-list(my_search.get_food_info(search_phrase="kung pao", target="description"))
-
-
-```
-
-This will result in the following result(truncated):
-
-```shell
-
-[['Kung Pao beef'],
- ['Kung pao chicken'],
- ['Kung Pao pork'],
- ['Kung Pao shrimp'],
- ['Restaurant, Chinese, kung pao chicken'],
- ['KUNG PAO SAUCE, KUNG PAO'],
- ['VEGAN KUNG PAO CHICKEN, KUNG PAO'],
- ['KUNG PAO STIR FRY SAUCE, KUNG PAO'],
- ['KUNG PAO STIR FRY SAUCE, KUNG PAO'],
-
-```
-
-The simplest way to find out all available `targets` is to simply call:
-
-```python
-
-list(my_search.get_food_info())
-
-
-```
-
-**This will throw an error showing what options are available.**:
-
-> KeyError: "target should be one of dict_keys(['fdc_id', 'description', 'scientific_name', 'common_names', 'additional_descriptions', 'gtin_upc', 'ndb_number', 'published_date', 'brand_owner', 'ingredients', 'score'])"
 
 
 
 
-For more details, please see the docs for each function or raise an issue.
-
-To get a `DataFrame` from multiple target fields, we can use `get_multiple_details` as shown:
-
-```shell
-
-my_search.get_multiple_details(search_phrase="noodle",target_fields=["fdc_id","description", "ndb_number"])[:5]
-
-    fdc_id          description ndb_number
-0   508613               NOODLE      20134
-1   546979               NOODLE      20133
-2  1101523      Noodles, cooked      20113
-3  1102193  Adobo, with noodles      20109
-4  1102334       Noodle pudding      20409
-
-
-
-```
 
 To get full details about a given `fdcId`, one can do the following:
 
@@ -182,23 +126,27 @@ NATURAL FLAVORS, EXTRACTIVES OF PAPRIKA.'
 
 ```
 
-To get nutrient details, we can use the following which returns a list of all 
-nutrient details. For brevity, only part of the first list item is shown.
+To get nutrient details:
 
 ```shell
 
-my_search.get_nutrients(fdc_id=" 496446")
-Out[131]: 
+my_search.get_food_details(fdc_id= 496446,target_field="nutrients")
+
       id number                            name   rank unitName
-0   1087    301                     Calcium, Ca   5300       mg
-1   1089    303                        Iron, Fe   5400       mg
-2   1104    318                   Vitamin A, IU   7500       IU
-3   1162    401  Vitamin C, total ascorbic acid   6300       mg
-4   1253    601                     Cholesterol  15700       mg
-5   1258    606    Fatty acids, total saturated   9700        g
-6   1003    203                         Protein    600        g
-7   1004    204               Total lipid (fat)    800        g
-8   1005    205     Carbohydrate, by difference   1110        g
+0   1079    291            Fiber, total dietary   1200        g
+1   1005    205     Carbohydrate, by difference   1110        g
+2   1008    208                          Energy    300     kcal
+3   1003    203                         Protein    600        g
+4   1093    307                      Sodium, Na   5800       mg
+5   1257    605        Fatty acids, total trans  15400        g
+6   1004    204               Total lipid (fat)    800        g
+7   1104    318                   Vitamin A, IU   7500       IU
+8   1087    301                     Calcium, Ca   5300       mg
+9   1162    401  Vitamin C, total ascorbic acid   6300       mg
+10  1253    601                     Cholesterol  15700       mg
+11  1258    606    Fatty acids, total saturated   9700        g
+12  1089    303                        Iron, Fe   5400       mg
+
 
   
 

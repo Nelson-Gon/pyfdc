@@ -2,6 +2,10 @@
 
 **Major Changes**
 
+- `get_nutrients` was dropped. Use `get_food_info` with `target_field` "nutrients."
+
+- `get_multiple_details` was dropped. Use `get_food_info` instead.
+
 - Classes FoodSearch and FoodDetails have been dropped. Use `FoodDataCentral` instead.
 
 - `api_key` was renamed to `pyfdc_api_key`
