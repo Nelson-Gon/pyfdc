@@ -100,8 +100,7 @@ class FoodDataCentral(object):
                                                            page_number=page_number, page_size=page_size,
                                                            sort_field=sort_field, sort_direction=sort_direction)))
 
-        return DataFrame(list(map(lambda x: list(chain.from_iterable(x)), result)),
-                         index=target_fields).transpose()
+        return DataFrame(list(map(lambda x: list(chain.from_iterable(x)), result)), index=target_fields).transpose()
 
     def get_food_details(self, fdc_id=None, target_field=None):
         """
@@ -127,10 +126,7 @@ class FoodDataCentral(object):
             else:
                 result = result[target_field]
 
-
             return result
 
         except requests.exceptions.HTTPError as error:
             print(error)
-
-
