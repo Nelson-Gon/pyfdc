@@ -3,9 +3,24 @@ pyfdc: A python interface to FoodDataCentral
 ============================================
 
 
+.. image:: https://badge.fury.io/py/pyfdc.svg
+   :target: https://pypi.python.org/pypi/pyfdc/
+   :alt: PyPI version fury.io
+
+
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3764453.svg
    :target: https://doi.org/10.5281/zenodo.3764453
    :alt: DOI
+
+
+.. image:: http://www.repostatus.org/badges/latest/active.svg
+   :target: http://www.repostatus.org/#active
+   :alt: Project Status
+ 
+
+.. image:: https://github.com/Nelson-Gon/pyfdc/workflows/Test-Package/badge.svg
+   :target: https://github.com/Nelson-Gon/pyfdc/workflows/Test-Package/badge.svg
+   :alt: Test-Package
 
 
 .. image:: https://travis-ci.com/Nelson-Gon/pyfdc.svg?branch=master
@@ -13,29 +28,14 @@ pyfdc: A python interface to FoodDataCentral
    :alt: Travis Build
 
 
-.. image:: https://readthedocs.org/projects/pyfdc/badge/?version=latest
-   :target: https://pyfdc.readthedocs.io/en/latest/?badge=latest
-   :alt: Documentation Status
-
-
-.. image:: https://github.com/Nelson-Gon/pyfdc/workflows/Test-Package/badge.svg
-   :target: https://github.com/Nelson-Gon/pyfdc/workflows/Test-Package/badge.svg
-   :alt: Test-Package
-
-
-.. image:: https://img.shields.io/badge/Maintained%3F-yes-green.svg
-   :target: https://GitHub.com/Nelson-Gon/pyfdc/graphs/commit-activity
-   :alt: Maintenance
-
-
-.. image:: https://badge.fury.io/py/pyfdc.svg
-   :target: https://pypi.python.org/pypi/pyfdc/
-   :alt: PyPI version fury.io
-
-
 .. image:: https://img.shields.io/pypi/l/pyfdc.svg
    :target: https://pypi.python.org/pypi/pyfdc/
    :alt: PyPI license
+
+
+.. image:: https://readthedocs.org/projects/pyfdc/badge/?version=latest
+   :target: https://pyfdc.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
 
 
 .. image:: https://img.shields.io/pypi/dm/pyfdc.svg
@@ -43,10 +43,10 @@ pyfdc: A python interface to FoodDataCentral
    :alt: PyPI Downloads Month
 
 
-.. image:: http://www.repostatus.org/badges/latest/active.svg
-   :target: http://www.repostatus.org/#active
-   :alt: Project Status
- 
+.. image:: https://img.shields.io/badge/Maintained%3F-yes-green.svg
+   :target: https://GitHub.com/Nelson-Gon/pyfdc/graphs/commit-activity
+   :alt: Maintenance
+
 
 .. image:: https://img.shields.io/github/last-commit/Nelson-Gon/pyfdc.svg
    :target: https://github.com/Nelson-Gon/pyfdc/commits/master
