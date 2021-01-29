@@ -1,7 +1,8 @@
 
-pyfdc 0.1.3
+pyfdc 0.2.1
 ===========
 
+**Release 0.2.1**
 **Major Changes**
 
 

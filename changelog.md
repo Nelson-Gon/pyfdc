@@ -1,5 +1,5 @@
-# pyfdc 0.1.3
-
+# pyfdc 0.2.1
+**Release 0.2.1**
 **Major Changes**
 
 - `get_nutrients` was dropped. Use `get_food_info` with `target_field` "nutrients."
