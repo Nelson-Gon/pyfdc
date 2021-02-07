@@ -175,13 +175,13 @@ Nelson Gonzabato(2020) pyfdc: A python interface to FoodDataCentral, https://git
 BibTex:
 
 ```shell
-@misc{Gonzabato2020,
+@misc{Gonzabato2021,
   author = {Gonzabato, N},
   title = {pyfdc: A python interface to FoodDataCentral},
-  year = {2020},
+  year = {2021},
   publisher = {GitHub},
   journal = {GitHub repository},
   howpublished = {\url{https://github.com/Nelson-Gon/pyfdc}},
-  commit = {ead2bef877ef28ff75b949267f95cf1ceb09c5c4}
+  commit = {20923d9dbea9dcf1b5cba741625b01f6637a6d7b}
 } 
 ```
