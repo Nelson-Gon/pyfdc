@@ -25,35 +25,29 @@ Please also update the docs using `sphinx`
 
 * Update `changelog.md` to reflect the changes made.
 
-* To update docs, run
+* Do the following:
 
-```shell
-bash scripts/mkdocs.sh
 
-```
-
-* Test that the sample script (`sample.py`) works as expected:
-
-```shell
-python sample.py
 
 ```
+bash scripts/mkdocs.sh #projectnamehere
+```
 
-* Release with `release.py` if necessary 
+
+* Releasing
 
 ```shell
 bash scripts/release.sh
 ```
-
 The above does the following:
 
  - Makes `dist` with `python setup.py sdist` at the very minimum. Ensure everything necessary is included in
  `Manifest.in`. 
  - Uploads `dist` to test.pypi.org with `twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
  - If everything looks good, asks you to upload to pypi.org with `twine upload dist/*`
-
+ 
 Please note that the 'pyfdc' project is released with a
-[Contributor Code of Conduct](https://github.com/Nelson-Gon/pyfdc/.github/CODE_OF_CONDUCT.md).
+[Contributor Code of Conduct](https://github/com/Nelson-Gon/pyfdc/.github/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
 
-
+[See also](https://samnicholls.net/2016/06/15/how-to-sphinx-readthedocs/) for a guide on Sphinx documentation.
