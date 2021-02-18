@@ -38,9 +38,19 @@ pyfdc: A python interface to FoodDataCentral
    :alt: Documentation Status
 
 
-.. image:: https://img.shields.io/pypi/dm/pyfdc.svg
-   :target: https://pypi.python.org/pypi/pyfdc/
-   :alt: PyPI Downloads Month
+.. image:: https://pepy.tech/badge/pyfdc
+   :target: https://pepy.tech/project/pyfdc
+   :alt: Total Downloads
+
+
+.. image:: https://pepy.tech/badge/pyfdc/month
+   :target: https://pepy.tech/project/pyfdc
+   :alt: Monthly Downloads
+
+
+.. image:: https://pepy.tech/badge/pyfdc/week
+   :target: https://pepy.tech/project/pyfdc
+   :alt: Weekly Downloads
 
 
 .. image:: https://img.shields.io/badge/Maintained%3F-yes-green.svg
