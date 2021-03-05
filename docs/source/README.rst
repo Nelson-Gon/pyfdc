@@ -107,7 +107,8 @@ Otherwise:
 .. code-block:: python
 
 
-   from pyfdc import *
+   from pyfdc.pyfdc import FoodDataCentral
+   from pyfdc.utils import set_api_key
 
 **Set session api key**
 
@@ -116,7 +117,7 @@ To avoid providing an api key for each call, one can set a session api key as fo
 .. code-block:: python
 
 
-   utils.set_api_key("my_api_key_here")
+   set_api_key("my_api_key_here")
 
 **Key Features**
 

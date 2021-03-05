@@ -55,7 +55,8 @@ python3 setup.py install
 
 ```python
 
-from pyfdc import *
+from pyfdc.pyfdc import FoodDataCentral
+from pyfdc.utils import set_api_key
 
 ```
 
@@ -65,7 +66,7 @@ To avoid providing an api key for each call, one can set a session api key as fo
 
 ```python
 
-utils.set_api_key("my_api_key_here")
+set_api_key("my_api_key_here")
 
 
 ```
