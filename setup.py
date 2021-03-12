@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
-
+from pyfdc.version import __version__
 
 setup(name='pyfdc',
-      version="0.2.1",
+      version=__version__,
       description='A python interface to FoodDataCentral',
       url="http://www.github.com/Nelson-Gon/pyfdc",
-      download_url="https://github.com/Nelson-Gon/pyfdc/archive/v0.1.2.zip",
+      download_url="https://github.com/Nelson-Gon/pyfdc/",
       author='Nelson Gonzabato',
       author_email='gonzabato@hotmail.com',
       license='MIT',
