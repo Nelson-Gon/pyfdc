@@ -5,6 +5,8 @@ from pandas import DataFrame, json_normalize
 from itertools import chain
 from utils import key_signup
 import os
+from warnings import warn
+from collections.abc import Sequence
 
 
 class FoodDataCentral(object):
@@ -19,12 +21,26 @@ class FoodDataCentral(object):
     """
 
     def __init__(self):
-        if "pyfdc_key" in os.environ:
-            self.api_key = os.environ.get("pyfdc_key")
-        else:
-            key_signup()
 
-    def get_food_info_internal(self, search_phrase=None, ingredients=None, brand_owner=None,
+        self.api_key = os.environ.get("pyfdc_key") if "pyfdc_key" in os.environ else key_signup()
+        self.base_url = f"https://api.nal.usda.gov/fdc/v1/foods/search?api_key={self.api_key}"
+        # alias camel with snake case
+        # Allow for users to see what keys we have.
+        self.available_targets = {"fdc_id": 'fdcId',
+                             "description": 'description',
+                             "scientific_name": 'scientificName',
+                             "common_names": 'commonNames',
+                             "additional_descriptions": 'additionalDescriptions',
+                             "gtin_upc": 'gtinUpc',
+                             "ndb_number": 'ndbNumber',
+                             "published_date": 'publicationDate',
+                             "brand_owner": 'brandOwner',
+                             "ingredients": 'ingredients',
+                             "score": 'score'}
+
+    def get_food_info_internal(self, search_phrase=None,
+                               ingredients=None,
+                               brand_owner=None,
                                target=None, page_number=None, page_size=50,
                                sort_field=None, sort_direction='asc'):
 
@@ -40,6 +56,9 @@ class FoodDataCentral(object):
         :return: A generator object with the required results.
         """
 
+        assert page_number is not None and isinstance(page_number, int), \
+            f"page_number should be an int not {type(page_number).__name__} "
+
         search_query = {'query': search_phrase,
                         'ingredients': ingredients,
                         'pageSize': page_size,
@@ -47,37 +66,28 @@ class FoodDataCentral(object):
                         'sortBy': sort_field,
                         'sortOrder': sort_direction,
                         'brandOwner': brand_owner}
-        # alias camel with snake case
-        available_targets = {"fdc_id": 'fdcId',
-                             "description": 'description',
-                             "scientific_name": 'scientificName',
-                             "common_names": 'commonNames',
-                             "additional_descriptions": 'additionalDescriptions',
-                             "gtin_upc": 'gtinUpc',
-                             "ndb_number": 'ndbNumber',
-                             "published_date": 'publicationDate',
-                             "brand_owner": 'brandOwner',
-                             "ingredients": 'ingredients',
-                             "score": 'score'}
+
 
         # docs
         # https://fdc.nal.usda.gov/api-spec/fdc_api.html#/FDC/postFoodsSearch
-        url_response = requests.get(f"https://api.nal.usda.gov/fdc/v1/foods/search?api_key={self.api_key}",
-                                    params=search_query)
+
         try:
+            url_response = requests.get(self.base_url, params=search_query)
             url_response.raise_for_status()
             unprocessed_result = json.loads(url_response.content)["foods"]
-            if target is None or target not in available_targets.keys():
-                raise KeyError("target should be one of {}".format(available_targets.keys()))
+        except KeyError:
+            raise KeyError(f"target should be one of {self.available_targets.keys()} not {target}")
 
+        except requests.exceptions.HTTPError:
+            raise
+
+        else:
             for x in unprocessed_result:
-                yield [value for key, value in x.items() if key == available_targets[target]]
-
-        except requests.exceptions.HTTPError as error:
-            print(error)
+                yield [val for key_id, val in x.items() if key_id == self.available_targets[target]]
 
     def get_food_info(self, search_phrase=None, target_fields=None,
-                      ingredients=None, brand_owner=None, page_number=None, page_size=50,
+                      ingredients=None, brand_owner=None, page_number=1,
+                      page_size=50,
                       sort_field=None, sort_direction='asc'):
         """
         :param search_phrase: A character string to search for.
@@ -93,14 +103,25 @@ class FoodDataCentral(object):
         """
         # TODO: Avoid two functions when one will do aka drop get_food_info_internal
         result = []
+        # Check that page number is not none and is an int (for now)
+
+        if target_fields is None:
+            warn("No target_fields were provided, returning fdc_id, ingredients, and description.")
+            target_fields = ["fdc_id", "ingredients", "description"]
+
+        if not isinstance(target_fields, Sequence):
+            raise TypeError(f"target should be a Sequence not {type(target_fields).__name__}")
+
         for target_key in target_fields:
             result.append(list(self.get_food_info_internal(search_phrase=search_phrase, target=target_key,
                                                            ingredients=ingredients,
                                                            brand_owner=brand_owner,
-                                                           page_number=page_number, page_size=page_size,
-                                                           sort_field=sort_field, sort_direction=sort_direction)))
+                                                           page_number=page_number,
+                                                           page_size=page_size,
+                                                           sort_field=sort_field,
+                                                           sort_direction=sort_direction)))
 
-        return DataFrame(list(map(lambda x: list(chain.from_iterable(x)), result)), index=target_fields).transpose()
+            return DataFrame(list(map(lambda x: list(chain.from_iterable(x)), result)), index=target_fields).transpose()
 
     def get_food_details(self, fdc_id=None, target_field=None):
         """
@@ -108,25 +129,48 @@ class FoodDataCentral(object):
         Accesses the FoodDetails EndPoint
 
         :param fdc_id: A FoodDataCentral Food ID
-        :param target_field: A string indicating which field to return e.g nutrients
+        :param target_field: A string indicating which field to return e.g nutrients If none is provided,
+        a low level result will be returned
 
-        :return: A JSON object with the desired results.
+        :return: A DataFrame object with the desired results.
 
         """
 
-        base_url = f"https://api.nal.usda.gov/fdc/v1/{fdc_id}?api_key={self.api_key}"
-        url_response = requests.get(base_url)
         try:
+            # base_url = f"https://api.nal.usda.gov/fdc/v1/{fdc_id}?api_key={self.api_key}"
+            # Replace in base url so we have only for a specific FDC ID.
+            assert fdc_id is not None, "fdc_id should not be None"
+            assert isinstance(fdc_id, int), f"fdc_id should be an int not {type(fdc_id).__name__}"
+            self.base_url = self.base_url.replace("foods/search", f"{fdc_id}")
+            url_response = requests.get(self.base_url)
             url_response.raise_for_status()
             result = url_response.json()
 
+        except requests.exceptions.HTTPError:
+            raise
+
+        except AssertionError:
+            raise
+
+        else:
+            if target_field is None:
+                warn("No target_field was provided, returning low level results.")
+                # Return a low level result that contains everything if it is not empty
+                return DataFrame([(key, value) for key, value in result.items() if value])
+
             if target_field == "nutrients":
-                result_custom = url_response.json()["foodNutrients"]
+                result_custom = result["foodNutrients"]
                 result = json_normalize(DataFrame(result_custom)["nutrient"])
             else:
                 result = result[target_field]
 
             return result
 
-        except requests.exceptions.HTTPError as error:
-            print(error)
+
+mysearch = FoodDataCentral()
+
+mysearch.get_food_info(search_phrase="cheese").head(6)
+
+mysearch.get_food_details(168977)
+
+

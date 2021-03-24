@@ -88,7 +88,7 @@ To get details about foods for a given search term, one can do the following:
 
 ```python
 
-my_search.get_food_info(search_phrase="sandwich",target_fields=["fdc_id","description","ingredients"]).head()
+mysearch.get_food_info(search_phrase="cheese").head(6)
 
 ```
 
@@ -96,17 +96,32 @@ The above will result in the following output:
 
 ```shell
 
-    fdc_id description                                        ingredients
-0  485360    SANDWICH  TUSCAN BREAD (ENRICHED WHEAT FLOUR [WHEAT FLOU...
-1  481873    SANDWICH  WHOLE GRAIN RYE FLOUR, VEGETABLE OIL (PALM, CA...
-2  507441    SANDWICH  ONION ROLL [ENRICHED UNBLEACHED FLOUR (WHEAT F...
-3  510847    SANDWICH  HONEY WHOLE WHEAT BREAD* [WHOLE WHEAT FLOUR*, ...
-4  529731    SANDWICH  REDUCED FAT ICE CREAM [MILK, CREAM, FUDGE SAUC...
- 
+#
+#UserWarning: No target_fields were provided, returning fdc_id, ingredients, and description.
+#    fdc_id                                        ingredients description
+#0   816524  BELLAVITANO CHEESE (PASTEURIZED MILK, CHEESE C...      CHEESE
+#1  1210322  BELLAVITANO CHEESE (PASTEURIZED MILK, CHEESE C...      CHEESE
+#2  1291586  CHEDDAR CHEESE (PASTEURIZED MILK, CHEESE CULTU...      CHEESE
+#3  1305389   PASTEURIZED COWS' MILK, SALT, CULTURES, ENZYMES.      CHEESE
+#4  1361608  CULTURED PASTEURIZED MILK, SALT, NON-ANIMAL EN...      CHEESE
+#5  1420013  FRESH PART-SKIM COW'S MILK, CHEESE CULTURE SAL...      CHEESE
 
 
 ```
 
+
+In the above, we got a warning message because we used defaults out-of-the-box. To customize, we can set 
+the `target_fields` we wish to have.
+
+```python
+mysearch.get_food_info(search_phrase="cheese", target_fields=["description"]).head(4)
+
+# description
+# 0      CHEESE
+# 1      CHEESE
+# 2      CHEESE
+# 3      CHEESE
+```
 
 
 
@@ -116,18 +131,24 @@ To get full details about a given `fdcId`, one can do the following:
 
 ```python
 
-my_search.get_food_details(fdc_id=504905, target_field="ingredients")
+mysearch.get_food_details(168977)
 
 ```
 
 This will give us the following output(truncated):
 
 ```shell
-
-'MECHANICALLY SEPARATED CHICKEN, CHICKEN BROTH, WATER, CONTAINS LESS THAN 2% OF: SALT, SUGAR, SPICES, SODIUM PHOSPHATE, SODIUM ASCORBATE, SODIUM NITRITE, 
-NATURAL FLAVORS, EXTRACTIVES OF PAPRIKA.'
+# UserWarning: No target_field was provided, returning low level results.
+#           0                                                  1
+#0                      fdcId                                             168977
+#1                description  Agutuk, meat-caribou (Alaskan ice cream) (Alas...
+#2            publicationDate                                           4/1/2019
+#3              foodNutrients  [{'nutrient': {'id': 2045, 'number': '951', 'n...
+#4                   dataType                                          SR Legacy
 
 ```
+
+The above is a low-level result that may be useful for development purpises. 
 
 To get nutrient details:
 
@@ -135,20 +156,13 @@ To get nutrient details:
 
 my_search.get_food_details(fdc_id= 496446,target_field="nutrients")
 
-      id number                            name   rank unitName
-0   1079    291            Fiber, total dietary   1200        g
-1   1005    205     Carbohydrate, by difference   1110        g
-2   1008    208                          Energy    300     kcal
-3   1003    203                         Protein    600        g
-4   1093    307                      Sodium, Na   5800       mg
-5   1257    605        Fatty acids, total trans  15400        g
-6   1004    204               Total lipid (fat)    800        g
-7   1104    318                   Vitamin A, IU   7500       IU
-8   1087    301                     Calcium, Ca   5300       mg
-9   1162    401  Vitamin C, total ascorbic acid   6300       mg
-10  1253    601                     Cholesterol  15700       mg
-11  1258    606    Fatty acids, total saturated   9700        g
-12  1089    303                        Iron, Fe   5400       mg
+#   id number                                name   rank unitName
+#0   2045    951                          Proximates     50        g
+#1   1051    255                               Water    100        g
+#2   1008    208                              Energy    300     kcal
+#3   1062    268                              Energy    400       kJ
+#4   1003    203                             Protein    600        g
+#5   1004    204                   Total lipid (fat)    800        g
 
 
   

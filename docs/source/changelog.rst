@@ -1,6 +1,18 @@
 
-pyfdc 0.2.1
-===========
+Welcome to pyfdc's changelog
+============================
+
+**Version 0.2.2**
+
+
+* 
+  Users can now view available targets by calling ``FoodDataCentral.available_targets``
+
+* 
+  ``get_food_details`` now returns a low level result if no ``fdc_id`` is provided.
+
+* 
+  Code was refactored to allow assertion statements and provide user warnings. 
 
 **Release 0.2.1**
 **Major Changes**
