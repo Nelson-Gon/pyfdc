@@ -3,6 +3,10 @@
 
 **Version 0.2.2**
 
+* Initial tests. 
+
+* Support for manual api key entry. This is useful for tests only. 
+
 * Users can now view available targets by calling `FoodDataCentral.available_targets`
 
 * `get_food_details` now returns a low level result if no `fdc_id` is provided.

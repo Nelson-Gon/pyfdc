@@ -6,7 +6,6 @@ from itertools import chain
 from utils import key_signup
 import os
 from warnings import warn
-from collections.abc import Sequence
 
 
 class FoodDataCentral(object):
@@ -20,23 +19,27 @@ class FoodDataCentral(object):
 
     """
 
-    def __init__(self):
+    def __init__(self, api_key=None):
 
-        self.api_key = os.environ.get("pyfdc_key") if "pyfdc_key" in os.environ else key_signup()
+        if api_key is None:
+            self.api_key = os.environ.get("pyfdc_key") if "pyfdc_key" in os.environ else key_signup()
+        else:
+            warn("Providing an api_key is discouraged, please consider using set_api_key.")
+            self.api_key = api_key
         self.base_url = f"https://api.nal.usda.gov/fdc/v1/foods/search?api_key={self.api_key}"
         # alias camel with snake case
         # Allow for users to see what keys we have.
         self.available_targets = {"fdc_id": 'fdcId',
-                             "description": 'description',
-                             "scientific_name": 'scientificName',
-                             "common_names": 'commonNames',
-                             "additional_descriptions": 'additionalDescriptions',
-                             "gtin_upc": 'gtinUpc',
-                             "ndb_number": 'ndbNumber',
-                             "published_date": 'publicationDate',
-                             "brand_owner": 'brandOwner',
-                             "ingredients": 'ingredients',
-                             "score": 'score'}
+                                  "description": 'description',
+                                  "scientific_name": 'scientificName',
+                                  "common_names": 'commonNames',
+                                  "additional_descriptions": 'additionalDescriptions',
+                                  "gtin_upc": 'gtinUpc',
+                                  "ndb_number": 'ndbNumber',
+                                  "published_date": 'publicationDate',
+                                  "brand_owner": 'brandOwner',
+                                  "ingredients": 'ingredients',
+                                  "score": 'score'}
 
     def get_food_info_internal(self, search_phrase=None,
                                ingredients=None,
@@ -67,7 +70,6 @@ class FoodDataCentral(object):
                         'sortOrder': sort_direction,
                         'brandOwner': brand_owner}
 
-
         # docs
         # https://fdc.nal.usda.gov/api-spec/fdc_api.html#/FDC/postFoodsSearch
 
@@ -75,8 +77,6 @@ class FoodDataCentral(object):
             url_response = requests.get(self.base_url, params=search_query)
             url_response.raise_for_status()
             unprocessed_result = json.loads(url_response.content)["foods"]
-        except KeyError:
-            raise KeyError(f"target should be one of {self.available_targets.keys()} not {target}")
 
         except requests.exceptions.HTTPError:
             raise
@@ -109,10 +109,12 @@ class FoodDataCentral(object):
             warn("No target_fields were provided, returning fdc_id, ingredients, and description.")
             target_fields = ["fdc_id", "ingredients", "description"]
 
-        if not isinstance(target_fields, Sequence):
-            raise TypeError(f"target should be a Sequence not {type(target_fields).__name__}")
+        if not isinstance(target_fields, (list, tuple)):
+            raise TypeError(f"target should be a list or tuple not {type(target_fields).__name__}")
 
         for target_key in target_fields:
+            if target_key not in self.available_targets.keys():
+                raise KeyError(f"target_key should be one of {self.available_targets.keys()} not {target_key}")
             result.append(list(self.get_food_info_internal(search_phrase=search_phrase, target=target_key,
                                                            ingredients=ingredients,
                                                            brand_owner=brand_owner,
@@ -166,11 +168,5 @@ class FoodDataCentral(object):
 
             return result
 
-
-mysearch = FoodDataCentral()
-
-mysearch.get_food_info(search_phrase="cheese").head(6)
-
-mysearch.get_food_details(168977)
 
 
