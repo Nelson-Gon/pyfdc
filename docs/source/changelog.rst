@@ -6,6 +6,15 @@ Welcome to pyfdc's changelog
 
 
 * 
+  Added coverage reports and auto download links. 
+
+* 
+  Initial tests. 
+
+* 
+  Support for manual api key entry. This is useful for tests only. 
+
+* 
   Users can now view available targets by calling ``FoodDataCentral.available_targets``
 
 * 

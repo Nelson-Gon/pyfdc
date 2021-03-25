@@ -3,6 +3,8 @@
 
 **Version 0.2.2**
 
+* Added coverage reports and auto download links. 
+
 * Initial tests. 
 
 * Support for manual api key entry. This is useful for tests only. 

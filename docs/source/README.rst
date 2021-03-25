@@ -18,6 +18,11 @@ pyfdc: A python interface to FoodDataCentral
    :alt: Project Status
  
 
+.. image:: https://codecov.io/gh/Nelson-Gon/pyfdc/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/Nelson-Gon/pyfdc?branch=master
+   :alt: Codecov
+
+
 .. image:: https://github.com/Nelson-Gon/pyfdc/workflows/Test-Package/badge.svg
    :target: https://github.com/Nelson-Gon/pyfdc/workflows/Test-Package/badge.svg
    :alt: Test-Package
