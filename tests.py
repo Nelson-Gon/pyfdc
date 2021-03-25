@@ -4,11 +4,12 @@ import unittest
 import os
 from unittest.mock import patch
 import requests
-
+from unittest import mock
+from pyfdc.utils import set_api_key
 # Create a test object
 
 
-my_search = FoodDataCentral(api_key="EMgmhkxg9Jfp2N8zw6gQ29u5Oek1sHvsWmkFJycE")
+my_search = FoodDataCentral(api_key="vuF8C2aKQOq2K5ZUyq175VPh3YbKgnMX0kTIvY9z")
 
 
 # Using one object will fail because the base_url will change.
@@ -74,6 +75,39 @@ class Testpyfdc(unittest.TestCase):
         food_details = my_search.get_food_details(fdc_id=496446, target_field="nutrients")
 
         self.assertIsInstance(food_details, DataFrame)
+
+        # Expect HTTP Errors if we have fake api keys for instance
+
+        with self.assertRaises(requests.HTTPError) as err:
+            FoodDataCentral(api_key="fake").get_food_details(fdc_id=496446,
+                                                             target_field="description")
+
+        # Fake API Key --> I will not let you in :)
+        self.assertEqual(err.exception.response.status_code, 403)
+
+        with self.assertRaises(KeyError):
+            my_search.get_food_details(fdc_id=496446, target_field="some_fake_key")
+
+
+        # This is an informative but ugly error message.
+        # self.assertEqual(str(err.exception),
+        #                  "some_fake_key not found in dict_keys(['foodComponents', 'foodAttributes', 'foodPortions', "
+        #                  "'fdcId', 'description', 'publicationDate', 'foodNutrients', 'dataType', 'foodClass', "
+        #                  "'modifiedDate', 'availableDate', 'brandOwner', 'dataSource', 'brandedFoodCategory', "
+        #                  "'gtinUpc', 'householdServingFullText', 'ingredients', 'marketCountry', 'servingSize', "
+        #                  "'servingSizeUnit', "
+        #                  " 'foodUpdateLog', 'labelNutrients'])")
+
+        # Check that we get the same fdc_id as we sent
+
+        self.assertEqual(my_search.get_food_details(fdc_id=496446, target_field="fdcId"), 496446)
+
+    # @mock.patch("pyfdc.utils.input")
+    # def test_utils(self, mock_input):
+    #     mock_input.side_effect = "False"
+    #     with self.assertRaises(ValueError):
+    #         set_api_key()
+
 
 
 if __name__ == "__main__":

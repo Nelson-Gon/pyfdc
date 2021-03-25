@@ -12,3 +12,4 @@ develop-eggs
 build*
 #Makefile
 __pycache__
+\.coverage
