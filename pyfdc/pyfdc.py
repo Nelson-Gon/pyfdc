@@ -74,7 +74,7 @@ class FoodDataCentral(object):
         # https://fdc.nal.usda.gov/api-spec/fdc_api.html#/FDC/postFoodsSearch
 
         try:
-            url_response = requests.get(self.base_url, params=search_query)
+            url_response = requests.get(self.base_url, params=search_query, headers={"User-Agent":"Mozilla-5.0"})
             url_response.raise_for_status()
             unprocessed_result = json.loads(url_response.content)["foods"]
 
@@ -143,8 +143,8 @@ class FoodDataCentral(object):
             # Replace in base url so we have only for a specific FDC ID.
             assert fdc_id is not None, "fdc_id should not be None"
             assert isinstance(fdc_id, int), f"fdc_id should be an int not {type(fdc_id).__name__}"
-            self.base_url = self.base_url.replace("foods/search", f"{fdc_id}")
-            url_response = requests.get(self.base_url)
+            base_url = self.base_url.replace("foods/search", f"{fdc_id}")
+            url_response = requests.get(base_url, headers={"User-Agent":"Mozilla-5.0"})
             url_response.raise_for_status()
             result = url_response.json()
 
@@ -162,11 +162,12 @@ class FoodDataCentral(object):
 
             if target_field == "nutrients":
                 result_custom = result["foodNutrients"]
-                result = json_normalize(DataFrame(result_custom)["nutrient"])
+                return json_normalize(DataFrame(result_custom)["nutrient"])[target_field]
+
             else:
-                result = result[target_field]
-
-            return result
-
-
-
+                try:
+                    target_field is not None and target_field in result.keys()
+                except KeyError:
+                    raise KeyError(f"{target_field} not found in {result.keys()}")
+                else:
+                    return result[target_field]

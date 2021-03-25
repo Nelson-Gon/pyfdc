@@ -9,8 +9,9 @@ import requests
 
 
 my_search = FoodDataCentral(api_key="EMgmhkxg9Jfp2N8zw6gQ29u5Oek1sHvsWmkFJycE")
+
+
 # Using one object will fail because the base_url will change.
-my_details = FoodDataCentral(api_key="EMgmhkxg9Jfp2N8zw6gQ29u5Oek1sHvsWmkFJycE")
 
 
 class Testpyfdc(unittest.TestCase):
@@ -57,20 +58,20 @@ class Testpyfdc(unittest.TestCase):
 
     def test_get_food_details(self):
         with self.assertRaises(AssertionError) as err:
-            my_details.get_food_details()
+            my_search.get_food_details()
         self.assertEqual(str(err.exception), "fdc_id should not be None")
 
         with self.assertRaises(AssertionError) as err:
-            my_details.get_food_details(fdc_id="string_id")
+            my_search.get_food_details(fdc_id="string_id")
         self.assertEqual(str(err.exception), "fdc_id should be an int not str")
 
         with self.assertWarns(UserWarning) as uwarn2:
-            my_details.get_food_details(fdc_id=496446)
+            my_search.get_food_details(fdc_id=496446)
         self.assertEqual(str(uwarn2.warning), "No target_field was provided, returning low level results.")
 
         # Check that we get the expected result
 
-        food_details = my_details.get_food_details(fdc_id=496446, target_field="nutrients")
+        food_details = my_search.get_food_details(fdc_id=496446, target_field="nutrients")
 
         self.assertIsInstance(food_details, DataFrame)
 
