@@ -1,8 +1,8 @@
 name: Test-Package
 
 on:
-  push:         {branches: [master]}
-  pull_request: {branches: [master]}
+  push:         {branches: [master, develop]}
+  pull_request: {branches: [master, develop]}
 
 
 
