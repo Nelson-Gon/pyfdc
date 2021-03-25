@@ -30,7 +30,8 @@ jobs:
     - name: Install package
       run: python3 setup.py install
 
-    - name: Test Example Script
-      env:
-        pyfdc_key: ${{ secrets.pyfdc_key }}
-      run: python sample.py
+    - name: Run tests and show coverage on the command line
+        run: coverage run tests.py && coverage report -m
+
+    - name: Upload reports to codecov
+        run: bash <(curl -s https://codecov.io/bash)
