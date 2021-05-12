@@ -6,6 +6,9 @@ Welcome to pyfdc's changelog
 
 
 * 
+  Now supporting a script mode. 
+
+* 
   Added coverage reports and auto download links. 
 
 * 
