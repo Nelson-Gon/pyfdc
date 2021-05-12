@@ -21,10 +21,11 @@ def main():
 
         arg_parser.add_argument("-m", "--method", type=str, help="Method to use, one of info or details",
                                 choices=["info", "details"], required=True)
-        arg_parser.add_argument("-p", "--phrase", type=str, required=True,
+        arg_parser.add_argument("-sp", "--phrase", type=str, required=True,
                                 help="Search term if food info, otherwise fdc_id")
-
-        arg_parser.add_argument("-f", "--fields", type=str, help="Target fields to return")
+        # List of target fields
+        # TODO: Figure out why this only returns a duplicated version of the first target field
+        arg_parser.add_argument("-f", "--fields", type=str,nargs="*", help="Target fields to return")
 
         arg_parser.add_argument("-ps", "--page-size", type=int, help="Number of results to return",
                                 default=50, required=False)
@@ -37,12 +38,12 @@ def main():
         arguments = arg_parser.parse_args()
 
         if arguments.method == "info":
-            fdc_object.get_food_info(search_phrase=arguments.phrase, target_fields=arguments.fields,
-                                     sort_field=arguments.sort_field, sort_direction=arguments.sort_direction,
-                                     page_size=arguments.page_size, page=arguments.page)
+            print(fdc_object.get_food_info(search_phrase=arguments.phrase, target_fields=arguments.fields,
+                                           sort_field=arguments.sort_field, sort_direction=arguments.sort_direction,
+                                           page_size=arguments.page_size, page_number=arguments.page))
         else:
-            fdc_object.get_food_details(fdc_id=int(arguments.phrase), target_field=arguments.fields)
+            print(fdc_object.get_food_details(fdc_id=int(arguments.phrase), target_field=arguments.fields[0]))
 
-    if __name__ == "__main__":
-        print("This is a test")
-        main()
+
+if __name__ == "__main__":
+    main()

@@ -54,6 +54,50 @@ python3 setup.py install
 
 **Sample usage**
 
+
+There are two ways to use `pydfc`. In script mode, one does the following:
+
+```shell
+python -m pyfdc --method "info" --phrase "cheese" --fields "description" | head
+#                                     description
+#0                                         CHEESE
+#1                                         CHEESE
+#2                                         CHEESE
+#3                                         CHEESE
+#4                                         CHEESE
+#5                                         CHEESE
+#6                                         CHEESE
+#7                                         CHEESE
+#8                                         CHEESE
+
+
+
+```
+
+The above uses the `get_food_info` method. To use, the `get_food_details` method, one simply sets method to "details" 
+and provides the target FoodDataCentral ID. 
+
+```shell
+ python -m pyfdc --method "details" --phrase 816524  --fields "nutrients"
+ 
+#      id number                                      name   rank unitName
+#0   1004    204                         Total lipid (fat)    800        g
+#1   1257    605                  Fatty acids, total trans  15400        g
+#2   1079    291                      Fiber, total dietary   1200        g
+#3   1003    203                                   Protein    600        g
+#4   1005    205               Carbohydrate, by difference   1110        g
+#5   1110    324  Vitamin D (D2 + D3), International Units   8650       IU
+#6   1008    208                                    Energy    300     kcal
+#7   2000    269              Sugars, total including NLEA   1510        g
+#8   1089    303                                  Iron, Fe   5400       mg
+#9   1087    301                               Calcium, Ca   5300       mg
+#10  1258    606              Fatty acids, total saturated   9700        g
+#11  1093    307                                Sodium, Na   5800       mg
+#12  1253    601                               Cholesterol  15700       mg
+
+```
+
+
 ```python
 
 from pyfdc.pyfdc import FoodDataCentral

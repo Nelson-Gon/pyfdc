@@ -3,6 +3,7 @@
 
 **Version 0.2.2**
 
+
 * Now supporting a script mode. 
 
 * Added coverage reports and auto download links. 

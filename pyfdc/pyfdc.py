@@ -1,4 +1,5 @@
 # Accesses the food search endpoint
+import pandas as pd
 import requests
 import json
 from pandas import DataFrame, json_normalize
@@ -155,17 +156,18 @@ class FoodDataCentral(object):
             raise
 
         else:
-            if target_field is None:
+            if not target_field:
                 warn("No target_field was provided, returning low level results.")
                 # Return a low level result that contains everything if it is not empty
                 return DataFrame([(key, value) for key, value in result.items() if value])
 
-            if target_field == "nutrients":
-                result_custom = result["foodNutrients"]
-                return json_normalize(DataFrame(result_custom)["nutrient"])
+            else:
+                if len(target_field) > 1:
+                    warn("More than one target field was requested, returning only the first")
 
-            try:
-                target_field is not None and target_field in result.keys()
-                return result[target_field]
-            except KeyError:
-                raise KeyError(f"{target_field} not found in {result.keys()}")
+                if target_field == "nutrients":
+                    result = result["foodNutrients"]
+                    return json_normalize(DataFrame(result)["nutrient"])
+
+                else:
+                    return result[target_field]
