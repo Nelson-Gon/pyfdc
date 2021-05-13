@@ -1,5 +1,4 @@
 # Accesses the food search endpoint
-import pandas as pd
 import requests
 import json
 from pandas import DataFrame, json_normalize
@@ -124,19 +123,15 @@ class FoodDataCentral(object):
                                                            sort_field=sort_field,
                                                            sort_direction=sort_direction)))
 
-            return DataFrame(list(map(lambda x: list(chain.from_iterable(x)), result)), index=target_fields).transpose()
+        return DataFrame(list(map(lambda x: list(chain.from_iterable(x)), result)), index=target_fields).transpose()
 
     def get_food_details(self, fdc_id=None, target_field=None):
         """
-
         Accesses the FoodDetails EndPoint
-
         :param fdc_id: A FoodDataCentral Food ID
         :param target_field: A string indicating which field to return e.g nutrients If none is provided,
         a low level result will be returned
-
         :return: A DataFrame object with the desired results.
-
         """
 
         try:
@@ -156,7 +151,7 @@ class FoodDataCentral(object):
             raise
 
         else:
-            if not target_field:
+            if target_field is None:
                 warn("No target_field was provided, returning low level results.")
                 # Return a low level result that contains everything if it is not empty
                 return DataFrame([(key, value) for key, value in result.items() if value])

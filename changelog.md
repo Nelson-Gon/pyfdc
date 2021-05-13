@@ -3,7 +3,8 @@
 
 **Version 0.2.2**
 
-
+* Fixed a bug that caused wrong output in `get_food_info`.  
+  
 * Now supporting a script mode. 
 
 * Added coverage reports and auto download links. 

@@ -6,6 +6,9 @@ Welcome to pyfdc's changelog
 
 
 * 
+  Fixed a bug that caused wrong output in ``get_food_info``.  
+
+* 
   Now supporting a script mode. 
 
 * 

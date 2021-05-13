@@ -113,17 +113,20 @@ There are two ways to use ``pydfc``. In script mode, one does the following:
 
 .. code-block:: shell
 
-   python -m pyfdc --method "info" --phrase "cheese" --fields "description" | head
-   #                                     description
-   #0                                         CHEESE
-   #1                                         CHEESE
-   #2                                         CHEESE
-   #3                                         CHEESE
-   #4                                         CHEESE
-   #5                                         CHEESE
-   #6                                         CHEESE
-   #7                                         CHEESE
-   #8                                         CHEESE
+   python -m pyfdc --method "info" --phrase "cheese" | head
+   #/pyfdc/pyfdc/pyfdc.py:109: UserWarning: No target_fields were provided, returning fdc_id, ingredients, and description.
+   #  warn("No target_fields were provided, returning fdc_id, ingredients, and description.")
+   #     fdc_id  ...                                   description
+   #0    816524  ...                                        CHEESE
+   #1   1463368  ...                                        CHEESE
+   #2   1597534  ...                                        CHEESE
+   #3   1653804  ...                                        CHEESE
+   #4   1660793  ...                                        CHEESE
+   #5   1497465  ...                                        CHEESE
+   #6   1465399  ...                                        CHEESE
+   #7    515803  ...                                        CHEESE
+   #8    500370  ...                                        CHEESE
+   #
 
 The above uses the ``get_food_info`` method. To use, the ``get_food_details`` method, one simply sets method to "details" 
 and provides the target FoodDataCentral ID. 
@@ -179,7 +182,7 @@ To get details about foods for a given search term, one can do the following:
 .. code-block:: python
 
 
-   mysearch.get_food_info(search_phrase="cheese").head(6)
+   my_search.get_food_info(search_phrase="cheese").head(6)
 
 The above will result in the following output:
 
