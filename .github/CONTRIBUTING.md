@@ -30,11 +30,15 @@ Please also update the docs using `sphinx`
 
 
 ```
-bash scripts/mkdocs.sh #projectnamehere
+bash scripts/mkdocs.sh 
 ```
 
+**Commit messages**
 
-* Releasing
+Please write commit messages in the format "Extends functionality" instead of "Extended functionality".
+
+
+**Releasing**
 
 ```shell
 bash scripts/release.sh
