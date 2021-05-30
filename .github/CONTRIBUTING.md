@@ -11,13 +11,14 @@ This document provides guidelines for contributions to `pyfdc`.
 
 **Fixing typos and enhancing documentation**
 
-To fix typos and/or grammatical errors, please edit the corresponding `.py` or `.md` file that generates the documentation. 
+To fix typos and/or grammatical errors, please edit the corresponding `.py` or `.md` file that 
+generates the documentation. 
 
-Please also update the docs using `sphinx`
+Please also update documentation by running `bash scripts/mkdocs.sh` as described also later. 
 
 **Pull Requests**
 
-* Please raise an issue for discussion and reproducibility checks at [issues](https://github.com/Nelson-Gon/pyfdc/issues)
+* Please raise an issue for discussion and reproducibility checks at https://github.com/Nelson-Gon/pyfdc/issues
 
 * Once the bug/enhancement is approved, please create a Git branch for the pull request.
 
@@ -33,12 +34,20 @@ Please also update the docs using `sphinx`
 bash scripts/mkdocs.sh 
 ```
 
+[See also](https://samnicholls.net/2016/06/15/how-to-sphinx-readthedocs/) for a guide on Sphinx documentation.
+
 **Commit messages**
 
 Please write commit messages in the format "Extends functionality" instead of "Extended functionality".
 
 
+**Maintainers only notice**
+
+
 **Releasing**
+
+This should ideally not be run since we are auto-releasing via a GitHub action. If for some reason you would like to
+release a new version manually, then:
 
 ```shell
 bash scripts/release.sh
@@ -54,4 +63,3 @@ Please note that the 'pyfdc' project is released with a
 [Contributor Code of Conduct](https://github/com/Nelson-Gon/pyfdc/.github/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
 
-[See also](https://samnicholls.net/2016/06/15/how-to-sphinx-readthedocs/) for a guide on Sphinx documentation.
