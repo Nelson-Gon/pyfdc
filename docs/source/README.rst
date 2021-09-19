@@ -28,11 +28,6 @@ pyfdc: A python interface to FoodDataCentral
    :alt: Test-Package
 
 
-.. image:: https://travis-ci.com/Nelson-Gon/pyfdc.svg?branch=master
-   :target: https://travis-ci.com/Nelson-Gon/pyfdc.svg?branch=master
-   :alt: Travis Build
-
-
 .. image:: https://img.shields.io/pypi/l/pyfdc.svg
    :target: https://pypi.python.org/pypi/pyfdc/
    :alt: PyPI license

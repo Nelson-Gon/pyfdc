@@ -4,7 +4,6 @@
 [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) 
 [![Codecov](https://codecov.io/gh/Nelson-Gon/pyfdc/branch/master/graph/badge.svg)](https://codecov.io/gh/Nelson-Gon/pyfdc?branch=master)
 ![Test-Package](https://github.com/Nelson-Gon/pyfdc/workflows/Test-Package/badge.svg)
-![Travis Build](https://travis-ci.com/Nelson-Gon/pyfdc.svg?branch=master)
 [![PyPI license](https://img.shields.io/pypi/l/pyfdc.svg)](https://pypi.python.org/pypi/pyfdc/)
 [![Documentation Status](https://readthedocs.org/projects/pyfdc/badge/?version=latest)](https://pyfdc.readthedocs.io/en/latest/?badge=latest)
 [![Total Downloads](https://pepy.tech/badge/pyfdc)](https://pepy.tech/project/pyfdc)
