@@ -139,7 +139,7 @@ class FoodDataCentral(object):
             # Replace in base url so we have only for a specific FDC ID.
             assert fdc_id is not None, "fdc_id should not be None"
             assert isinstance(fdc_id, int), f"fdc_id should be an int not {type(fdc_id).__name__}"
-            base_url = self.base_url.replace("foods/search", f"{fdc_id}")
+            base_url = self.base_url.replace("foods/search", f"food/{fdc_id}")
             url_response = requests.get(base_url, headers={"User-Agent": "Mozilla-5.0"})
             url_response.raise_for_status()
             result = url_response.json()
@@ -162,7 +162,12 @@ class FoodDataCentral(object):
 
                 if target_field == "nutrients":
                     result = result["foodNutrients"]
-                    return json_normalize(DataFrame(result)["nutrient"])
+                    return json_normalize(result)[{'id', 'amount', 'nutrient.id', 'nutrient.number',
+                                                   'nutrient.name', 'nutrient.rank', 'nutrient.unitName',
+                                                   'foodNutrientDerivation.description'}]
 
                 else:
                     return result[target_field]
+
+my_search = FoodDataCentral(api_key="vuF8C2aKQOq2K5ZUyq175VPh3YbKgnMX0kTIvY9z")
+my_search.get_food_details(fdc_id=496446, target_field="nutrients").head(6)

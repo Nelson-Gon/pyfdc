@@ -235,13 +235,25 @@ To get nutrient details:
 
    my_search.get_food_details(fdc_id= 496446,target_field="nutrients")
 
-   #   id number                                name   rank unitName
-   #0   2045    951                          Proximates     50        g
-   #1   1051    255                               Water    100        g
-   #2   1008    208                              Energy    300     kcal
-   #3   1062    268                              Energy    400       kJ
-   #4   1003    203                             Protein    600        g
-   #5   1004    204                   Total lipid (fat)    800        g
+   # nutrient.id nutrient.unitName                   nutrient.name  \
+   #0         1089                mg                        Iron, Fe   
+   #1         1258                 g    Fatty acids, total saturated   
+   #2         1253                mg                     Cholesterol   
+   #3         1162                mg  Vitamin C, total ascorbic acid   
+   #4         1087                mg                     Calcium, Ca   
+   #5         1104                IU                   Vitamin A, IU   
+   #                  foodNutrientDerivation.description       id  amount  \
+   #0  Calculated from a daily value percentage per s...  3992103    3.39   
+   #1  Calculated from a daily value percentage per s...  3992107    0.47   
+   #2  Calculated from a daily value percentage per s...  3992106    0.00   
+   #3  Calculated from a daily value percentage per s...  3992105    0.00   
+   #4  Calculated from a daily value percentage per s...  3992102  118.00   
+   #5  Calculated from a daily value percentage per s...  3992104    0.00   
+   #  nutrient.number  nutrient.rank  
+   #0             303           5400  
+   #1             606           9700  
+   #2             601          15700  
+   #3             401           6300
 
 **Credit**
 

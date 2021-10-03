@@ -3,6 +3,8 @@
 
 **Version 0.2.2**
 
+* Added nutrition information after https://github.com/Nelson-Gon/rfdc/issues/2
+
 * Fixed a bug that caused wrong output in `get_food_info`.  
   
 * Now supporting a script mode. 

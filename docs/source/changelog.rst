@@ -6,6 +6,9 @@ Welcome to pyfdc's changelog
 
 
 * 
+  Added nutrition information after https://github.com/Nelson-Gon/rfdc/issues/2
+
+* 
   Fixed a bug that caused wrong output in ``get_food_info``.  
 
 * 
