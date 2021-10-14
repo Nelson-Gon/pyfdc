@@ -38,6 +38,5 @@ jobs:
         CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
       run: | 
        curl -Os https://uploader.codecov.io/latest/linux/codecov
-       find . -iregex "codecov.*"
        chmod +x codecov 
-       ./codecov -Rt ${CODECOV_TOKEN}
+       ./codecov -t ${CODECOV_TOKEN} 
