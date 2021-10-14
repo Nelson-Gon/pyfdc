@@ -31,7 +31,7 @@ jobs:
       run: python3 setup.py install
 
     - name: Run tests and show coverage on the command line
-      run: coverage run tests.py && coverage report -m
+      run: coverage run tests.py && coverage report -m && coverage xml
 
     - name: Upload reports to codecov
       env:
@@ -39,4 +39,4 @@ jobs:
       run: | 
        curl -Os https://uploader.codecov.io/latest/linux/codecov
        chmod +x codecov 
-       ./codecov -t ${CODECOV_TOKEN} -R /home/runner/work/pyfdc 
+       ./codecov -t ${CODECOV_TOKEN} -R /home/runner/work/pyfdc -f "coverage.xml"
