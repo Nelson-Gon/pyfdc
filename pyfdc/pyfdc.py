@@ -169,5 +169,6 @@ class FoodDataCentral(object):
                 else:
                     return result[target_field]
 
+
 my_search = FoodDataCentral(api_key="vuF8C2aKQOq2K5ZUyq175VPh3YbKgnMX0kTIvY9z")
 my_search.get_food_details(fdc_id=496446, target_field="nutrients").head(6)
