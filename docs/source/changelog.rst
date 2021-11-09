@@ -6,6 +6,9 @@ Welcome to pyfdc's changelog
 
 
 * 
+  Tests rewritten to make tests easier to debug. 
+
+* 
   Users can now supply ``label_nutrients`` to ``target_field`` to get label nutrient information. 
 
 * 

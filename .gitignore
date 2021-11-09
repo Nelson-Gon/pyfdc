@@ -13,3 +13,5 @@ build*
 #Makefile
 __pycache__
 \.coverage
+htmlcov
+\.vscode

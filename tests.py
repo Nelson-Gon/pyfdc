@@ -9,10 +9,7 @@ from pyfdc.utils import set_api_key
 # Create a test object
 
 
-my_search = FoodDataCentral(api_key="vuF8C2aKQOq2K5ZUyq175VPh3YbKgnMX0kTIvY9z")
-
-
-# Using one object will fail because the base_url will change.
+my_search = FoodDataCentral()
 
 
 class Testpyfdc(unittest.TestCase):
@@ -28,10 +25,11 @@ class Testpyfdc(unittest.TestCase):
     # Check api_key equality
     # This mocks what set_api_key does.
 
-    with patch.dict('os.environ', {"pyfdc_key": "EMgmhkxg9Jfp2N8zw6gQ29u5Oek1sHvsWmkFJycE"}):
-        assert os.environ["pyfdc_key"] == "EMgmhkxg9Jfp2N8zw6gQ29u5Oek1sHvsWmkFJycE"
-        assert "pyfdc_key" in os.environ
-    pass
+    def test_api_key_mocks(self):
+        with patch.dict('os.environ', {"pyfdc_key": "EMgmhkxg9Jfp2N8zw6gQ29u5Oek1sHvsWmkFJycE"}):
+            assert os.environ["pyfdc_key"] == "EMgmhkxg9Jfp2N8zw6gQ29u5Oek1sHvsWmkFJycE"
+            assert "pyfdc_key" in os.environ
+        pass
 
     def test_get_food_info(self):
         with self.assertWarns(UserWarning) as uwarn:
@@ -88,20 +86,17 @@ class Testpyfdc(unittest.TestCase):
         with self.assertRaises(KeyError):
             my_search.get_food_details(fdc_id=496446, target_field="some_fake_key")
 
-
-        # This is an informative but ugly error message.
-        # self.assertEqual(str(err.exception),
-        #                  "some_fake_key not found in dict_keys(['foodComponents', 'foodAttributes', 'foodPortions', "
-        #                  "'fdcId', 'description', 'publicationDate', 'foodNutrients', 'dataType', 'foodClass', "
-        #                  "'modifiedDate', 'availableDate', 'brandOwner', 'dataSource', 'brandedFoodCategory', "
-        #                  "'gtinUpc', 'householdServingFullText', 'ingredients', 'marketCountry', 'servingSize', "
-        #                  "'servingSizeUnit', "
-        #                  " 'foodUpdateLog', 'labelNutrients'])")
-
         # Check that we get the same fdc_id as we sent
 
         self.assertEqual(my_search.get_food_details(fdc_id=496446, target_field="fdcId"), 496446)
 
+        self.assertIsInstance(my_search.get_food_details(fdc_id=496446, target_field="label_nutrients"),
+                             DataFrame)
+        # Check that we can raise a KeyError if no label nutrients are present 
+        # print(my_search.get_food_details(fdc_id=168977, target_field="label_nutrients"))
+        with self.assertRaises(KeyError, msg="FDC ID 168977 has no label nutrients."):
+            my_search.get_food_details(fdc_id=168977, target_field="label_nutrients")
+        pass
     # @mock.patch("pyfdc.utils.input")
     # def test_utils(self, mock_input):
     #     mock_input.side_effect = "False"

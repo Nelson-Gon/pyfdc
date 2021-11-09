@@ -3,6 +3,8 @@
 
 **Version 0.2.2**
 
+* Tests rewritten to make tests easier to debug. 
+
 * Users can now supply `label_nutrients` to `target_field` to get label nutrient information. 
 
 * Added nutrition information after https://github.com/Nelson-Gon/rfdc/issues/2

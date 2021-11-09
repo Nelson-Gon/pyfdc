@@ -174,7 +174,7 @@ class FoodDataCentral(object):
                                                    'foodNutrientDerivation.description'}]
                 if target_field == "label_nutrients":
                     if not "labelNutrients" in result.keys():
-                        raise KeyError(f"FDC ID: {fdc_id} has no label nutrients.")
+                        raise KeyError(f"FDC ID {fdc_id} has no label nutrients.")
                     label_nutrients_df = json_normalize(result["labelNutrients"])  
                     label_nutrients_df.columns = [re.sub(".value", "", x) for x in label_nutrients_df] 
                     return label_nutrients_df                    
