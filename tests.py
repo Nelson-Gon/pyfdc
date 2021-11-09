@@ -8,6 +8,8 @@ from unittest import mock
 from pyfdc.utils import set_api_key
 # Create a test object
 
+# set API key from a users OS environ
+set_api_key()
 
 my_search = FoodDataCentral()
 
