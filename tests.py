@@ -9,7 +9,9 @@ from pyfdc.utils import set_api_key
 # Create a test object
 
 # set API key from a users OS environ
-set_api_key()
+# Only on Github actions
+# TODO: Check that this only runs on GH Actions 
+set_api_key(os.environ["PYFDC_KEY"])
 
 my_search = FoodDataCentral()
 
