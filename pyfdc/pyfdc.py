@@ -183,5 +183,3 @@ class FoodDataCentral(object):
                     return result[target_field]
 
 
-my_search = FoodDataCentral()
-my_search.get_food_details(504905, target_field="label_nutrients")
