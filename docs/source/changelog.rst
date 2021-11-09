@@ -6,6 +6,9 @@ Welcome to pyfdc's changelog
 
 
 * 
+  Users can now supply ``label_nutrients`` to ``target_field`` to get label nutrient information. 
+
+* 
   Added nutrition information after https://github.com/Nelson-Gon/rfdc/issues/2
 
 * 

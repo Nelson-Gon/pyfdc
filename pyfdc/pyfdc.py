@@ -1,4 +1,6 @@
 # Accesses the food search endpoint
+import collections
+from typing import Sequence
 import requests
 import json
 from pandas import DataFrame, json_normalize
@@ -6,6 +8,7 @@ from itertools import chain
 from utils import key_signup
 import os
 from warnings import warn
+import re 
 
 
 class FoodDataCentral(object):
@@ -125,7 +128,7 @@ class FoodDataCentral(object):
 
         return DataFrame(list(map(lambda x: list(chain.from_iterable(x)), result)), index=target_fields).transpose()
 
-    def get_food_details(self, fdc_id=None, target_field=None):
+    def get_food_details(self, fdc_id=None, target_field=None, result_format="full",nutrients=None):
         """
         Accesses the FoodDetails EndPoint
         :param fdc_id: A FoodDataCentral Food ID
@@ -133,13 +136,17 @@ class FoodDataCentral(object):
         a low level result will be returned
         :return: A DataFrame object with the desired results.
         """
-
+ 
         try:
             # base_url = f"https://api.nal.usda.gov/fdc/v1/{fdc_id}?api_key={self.api_key}"
             # Replace in base url so we have only for a specific FDC ID.
             assert fdc_id is not None, "fdc_id should not be None"
             assert isinstance(fdc_id, int), f"fdc_id should be an int not {type(fdc_id).__name__}"
             base_url = self.base_url.replace("foods/search", f"food/{fdc_id}")
+            base_url = base_url + "&format=" + result_format 
+            # print(base_url)
+            if nutrients:
+                base_url = base_url + "&nutrients=" + ",".join(nutrients)
             url_response = requests.get(base_url, headers={"User-Agent": "Mozilla-5.0"})
             url_response.raise_for_status()
             result = url_response.json()
@@ -157,18 +164,24 @@ class FoodDataCentral(object):
                 return DataFrame([(key, value) for key, value in result.items() if value])
 
             else:
-                if len(target_field) > 1:
-                    warn("More than one target field was requested, returning only the first")
-
+                # if len(target_field) > 1:
+                    # warn("More than one target field was requested, returning only the first")
+                 
                 if target_field == "nutrients":
                     result = result["foodNutrients"]
                     return json_normalize(result)[{'id', 'amount', 'nutrient.id', 'nutrient.number',
                                                    'nutrient.name', 'nutrient.rank', 'nutrient.unitName',
                                                    'foodNutrientDerivation.description'}]
+                if target_field == "label_nutrients":
+                    if not "labelNutrients" in result.keys():
+                        raise KeyError(f"FDC ID: {fdc_id} has no label nutrients.")
+                    label_nutrients_df = json_normalize(result["labelNutrients"])  
+                    label_nutrients_df.columns = [re.sub(".value", "", x) for x in label_nutrients_df] 
+                    return label_nutrients_df                    
 
                 else:
                     return result[target_field]
 
 
-my_search = FoodDataCentral(api_key="vuF8C2aKQOq2K5ZUyq175VPh3YbKgnMX0kTIvY9z")
-my_search.get_food_details(fdc_id=496446, target_field="nutrients").head(6)
+my_search = FoodDataCentral()
+my_search.get_food_details(504905, target_field="label_nutrients")

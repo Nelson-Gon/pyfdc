@@ -3,6 +3,8 @@
 
 **Version 0.2.2**
 
+* Users can now supply `label_nutrients` to `target_field` to get label nutrient information. 
+
 * Added nutrition information after https://github.com/Nelson-Gon/rfdc/issues/2
 
 * Fixed a bug that caused wrong output in `get_food_info`.  

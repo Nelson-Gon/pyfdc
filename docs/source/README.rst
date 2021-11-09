@@ -197,9 +197,9 @@ The above will result in the following output:
 In the above, we got a warning message because we used defaults out-of-the-box. To customize, we can set 
 the ``target_fields`` we wish to have.
 
-.. code-block:: python
+.. code-block:: shell
 
-   mysearch.get_food_info(search_phrase="cheese", target_fields=["description"]).head(4)
+   my_search.get_food_info(search_phrase="cheese", target_fields=["description"]).head(4)
 
    # description
    # 0      CHEESE
@@ -209,10 +209,10 @@ the ``target_fields`` we wish to have.
 
 To get full details about a given ``fdcId``\ , one can do the following:
 
-.. code-block:: python
+.. code-block:: shell
 
 
-   mysearch.get_food_details(168977)
+   my_search.get_food_details(168977)
 
 This will give us the following output(truncated):
 
@@ -254,6 +254,17 @@ To get nutrient details:
    #1             606           9700  
    #2             601          15700  
    #3             401           6300
+
+One can also get label nutrients (if they exist):
+
+.. code-block:: shell
+
+   my_search.get_food_details(504905, target_field="label_nutrients")
+
+   #    fat  saturatedFat  transFat  cholesterol  sodium  ...  calcium  iron  potassium  addedSugar  calories
+   #0  15.0           4.5       0.0         84.5  1060.0  ...     80.6  1.08       70.2        1.04       179
+
+   #[1 rows x 14 columns]
 
 **Credit**
 
