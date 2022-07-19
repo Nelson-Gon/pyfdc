@@ -168,10 +168,9 @@ class FoodDataCentral(object):
                     # warn("More than one target field was requested, returning only the first")
                  
                 if target_field == "nutrients":
-                    result = result["foodNutrients"]
-                    return json_normalize(result)[{'id', 'amount', 'nutrient.id', 'nutrient.number',
-                                                   'nutrient.name', 'nutrient.rank', 'nutrient.unitName',
-                                                   'foodNutrientDerivation.description'}]
+                    result = json_normalize(result["foodNutrients"])
+                    # Better to automate column selection that manually listing the columns we need
+                    return result[result.columns]
                 if target_field == "label_nutrients":
                     if not "labelNutrients" in result.keys():
                         raise KeyError(f"FDC ID {fdc_id} has no label nutrients.")

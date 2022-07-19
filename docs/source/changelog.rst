@@ -2,6 +2,11 @@
 Welcome to pyfdc's changelog
 ============================
 
+**Version 0.2.3**
+
+
+* Fixed an issue in ``get_food_details`` due to a change in column naming in the API interface. This is now automated backend. 
+
 **Version 0.2.2**
 
 
