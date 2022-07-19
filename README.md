@@ -45,7 +45,7 @@ Otherwise:
 # clone the repo
 git clone git@github.com:Nelson-Gon/pyfdc.git
 cd pyfdc
-python3 setup.py install
+python3 -m pip install . 
 
 ```
 

@@ -7,6 +7,7 @@
 base_dir="$(realpath "$0")"
 file_location="$(dirname "$base_dir")"
 modules_location="$(dirname "$file_location")"
+use_python="$(which python || which python3)"
 echo "Doc generator is located in" "$file_location" "while modules are in" "$modules_location"
 echo -e "\e[0;36m Writing and moving README, contributing, and changelog to docs folder";
 
@@ -16,11 +17,11 @@ if [ ! -f docs/source/modules.rst ]
 
     fi;
 
-python -m m2r README.md changelog.md .github/CONTRIBUTING.md --overwrite
+$use_python -m m2r README.md changelog.md .github/CONTRIBUTING.md --overwrite
 mv .github/CONTRIBUTING.rst README.rst changelog.rst docs/source
 
 echo "Building docs for" "$(dirname "$file_location")"
-./make.bat html
+make html
 echo  -e "\e[0;36m All done, commit latest changes if you wish."
 echo  -e "\e[0;36m If there were errors or warnings, delete modules.rst and ensure index.rst exists before trying again."
 
