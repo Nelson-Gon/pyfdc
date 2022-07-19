@@ -169,8 +169,7 @@ class FoodDataCentral(object):
                  
                 if target_field == "nutrients":
                     result = json_normalize(result["foodNutrients"])
-                    # Better to automate column selection that manually listing the columns we need
-                    return result[result.columns]
+                    return result
                 if target_field == "label_nutrients":
                     if not "labelNutrients" in result.keys():
                         raise KeyError(f"FDC ID {fdc_id} has no label nutrients.")
