@@ -2,6 +2,9 @@
 
 **Version 0.2.3**
 
+* Tests are now written with the `pytest` framework which means that this is now a dependency. We also now use `pytest_cov` for coverage reports. This also 
+introduces yet another dependency. 
+
 * Fixed an issue in `get_food_details` due to a change in column naming in the API interface. This is now automated backend. 
 
 **Version 0.2.2**

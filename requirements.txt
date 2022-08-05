@@ -7,7 +7,8 @@ sphinxcontrib-htmlhelp==2.0.0
 sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==1.0.3
 sphinxcontrib-serializinghtml==1.1.5
-mistune==2.0.3  
+# Known security issues but m2r won't work with anything above 0.8.4 for some reason
+mistune==0.8.4  
 m2r==0.2.1
 coverage==5.3.1
 pytest==7.1.2
