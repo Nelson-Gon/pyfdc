@@ -1,0 +1,2 @@
+[run]
+omit=pyfdc/__main__.py
