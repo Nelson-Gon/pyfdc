@@ -2,6 +2,9 @@
 
 **Version 0.2.3**
 
+* We now use `joblib`'s 'loky' backend for processing the results in parallel. This is related to 
+[#4](https://github.com/Nelson-Gon/pyfdc/issues/4). 
+
 * Tests are now written with the `pytest` framework which means that this is now a dependency. We also now use `pytest_cov` for coverage reports. This also 
 introduces yet another dependency. 
 
